@@ -1,0 +1,7 @@
+{
+  "name": "recon",
+  "private": true,
+  "type": "module",
+  "description": "Scripts used to reverse-engineer luxterra.framer.website (layout, animations, assets) and push captures to Figma",
+  "devDependencies": { "playwright": "1.56.1" }
+}

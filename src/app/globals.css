@@ -1,26 +1,158 @@
 @import "tailwindcss";
 
+@theme {
+  --color-ink: #111112;
+  --color-ink-soft: #18181b;
+  --color-night: #101010;
+  --color-purple: #7f51ff;
+  --color-mist: #f5f5f5;
+  --color-chip: #f7f7f8;
+  --color-line: #ededed;
+  --color-line-soft: #eaeaea;
+  --font-sans: var(--font-inter), "Inter", sans-serif;
+}
+
+html {
+  background: #ffffff;
+}
+
+/* Layout: content is max 1356px, centered, with a 32px minimum gutter (as on the original site) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --gutter-min: 32px;
+  --content: min(calc(100vw - var(--gutter-min) * 2), 1356px);
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@media (max-width: 767px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --gutter-min: 16px;
   }
+}
+@utility px-wrap {
+  padding-inline: max(var(--gutter-min), calc((100% - 1356px) / 2));
+}
+@utility inset-x-wrap {
+  left: max(var(--gutter-min), calc((100% - 1356px) / 2));
+  right: max(var(--gutter-min), calc((100% - 1356px) / 2));
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv05", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Type scale extracted from the original Framer site (desktop) */
+@utility t-58 {
+  font-size: 58px;
+  line-height: 60.9px;
+  letter-spacing: -4.176px;
+  font-variation-settings: "opsz" 14, "wght" 410;
+}
+@utility t-42 {
+  font-size: 42px;
+  line-height: 44.94px;
+  letter-spacing: -2.52px;
+  font-variation-settings: "opsz" 14, "wght" 420;
+}
+@utility t-34 {
+  font-size: 34px;
+  line-height: 37.4px;
+  letter-spacing: -1.7px;
+  font-variation-settings: "opsz" 14, "wght" 410;
+}
+@utility t-26 {
+  font-size: 26px;
+  line-height: 29.9px;
+  letter-spacing: -1.352px;
+  font-variation-settings: "opsz" 14, "wght" 430;
+}
+@utility t-24 {
+  font-size: 24px;
+  line-height: 29.28px;
+  letter-spacing: -0.96px;
+  font-variation-settings: "opsz" 14, "wght" 420;
+}
+@utility t-19 {
+  font-size: 19px;
+  line-height: 25.27px;
+  letter-spacing: -0.76px;
+  font-variation-settings: "opsz" 14, "wght" 410;
+}
+@utility t-18 {
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.72px;
+  font-variation-settings: "opsz" 14, "wght" 410;
+}
+@utility t-17 {
+  font-size: 17px;
+  line-height: 25px;
+  letter-spacing: -0.51px;
+  font-variation-settings: "opsz" 14, "wght" 410;
+}
+@utility t-16 {
+  font-size: 16px;
+  line-height: 21.6px;
+  letter-spacing: -0.32px;
+}
+@utility t-15 {
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: -0.15px;
+}
+@utility t-13 {
+  font-size: 13px;
+  line-height: 15.6px;
+  letter-spacing: -0.05px;
+  font-feature-settings: "blwf", "cv03", "cv04", "cv05", "cv09", "cv11";
+}
+@utility t-counter {
+  font-size: 74px;
+  line-height: 72.52px;
+  letter-spacing: -9px;
+  font-feature-settings: "cv05", "cv06", "cv07", "cv08", "cv10", "cv11", "cv12", "cv13", "ss06", "ss07", "tnum";
+}
+
+/* Hover "text roll" used by nav links and buttons */
+.roll {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+.roll-track {
+  position: relative;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+}
+.roll-second {
+  position: absolute;
+  left: 0;
+}
+.roll-up .roll-second {
+  top: calc(100% + var(--roll-gap));
+}
+.roll-down .roll-second {
+  bottom: calc(100% + var(--roll-gap));
+}
+.roll-down .roll-track {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover .roll-up .roll-track {
+  transform: translateY(calc(-100% - var(--roll-gap)));
+}
+.group:hover .roll-down .roll-track {
+  transform: translateY(calc(100% + var(--roll-gap)));
+}
+
+/* Image zoom on hover */
+.zoom-img {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roll-track,
+  .zoom-img {
+    transition: none;
+  }
 }
