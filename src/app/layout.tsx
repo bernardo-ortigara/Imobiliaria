@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Footer } from "@/components/sections/footer";
+import { Header } from "@/components/sections/header";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import "lenis/dist/lenis.css";
 import "./globals.css";
@@ -20,7 +22,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="pt-BR" className={`${inter.variable} antialiased`}>
       <body>
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          <Header />
+          {children}
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

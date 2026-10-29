@@ -1,7 +1,8 @@
-import Image from "next/image";
+import { PostCard } from "@/components/cards";
 import { Reveal } from "@/components/motion";
 import { GridLines, SectionLabel } from "@/components/ui";
 import { blog } from "@/lib/content";
+import { posts } from "@/lib/data/posts";
 
 export function Blog() {
   return (
@@ -22,27 +23,9 @@ export function Blog() {
           </Reveal>
         </div>
         <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-3">
-          {blog.posts.map((post) => (
-            <Reveal key={post.title}>
-              <a href="#" className="group/post flex flex-col gap-5">
-                <div className="relative aspect-[436/363] overflow-hidden rounded-[2px]">
-                  <Image
-                    src={post.image}
-                    alt=""
-                    fill
-                    sizes="(min-width: 768px) 436px, 100vw"
-                    className="zoom-img object-cover object-right group-hover/post:scale-[1.05]"
-                  />
-                </div>
-                <div className="flex flex-col gap-1">
-                  <div className="flex items-center gap-[10px]">
-                    <span className="t-15 rounded-[1px] bg-mist px-3 py-[7px] text-ink">{post.tag}</span>
-                    <span className="size-[5px] rounded-full bg-purple" />
-                    <span className="t-15 text-black/70">{post.date}</span>
-                  </div>
-                  <h3 className="t-26 text-ink">{post.title}</h3>
-                </div>
-              </a>
+          {posts.slice(0, 3).map((post) => (
+            <Reveal key={post.slug}>
+              <PostCard post={post} />
             </Reveal>
           ))}
         </div>

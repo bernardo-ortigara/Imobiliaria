@@ -6,6 +6,7 @@ import { useState } from "react";
 import { EASE_REVEAL, Reveal } from "@/components/motion";
 import { GridLines, RollButton, SectionLabel } from "@/components/ui";
 import { faq } from "@/lib/content";
+import { routes } from "@/lib/routes";
 
 function PlusIcon({ open }: { open: boolean }) {
   return (
@@ -39,7 +40,7 @@ export function Faq() {
               <Image src={faq.image} alt="" fill sizes="140px" className="object-cover object-[18.2%_39.7%]" />
             </div>
             <p className="t-18 max-w-[307px] text-black/70">{faq.text}</p>
-            <RollButton className="border border-black/15 bg-white">{faq.cta}</RollButton>
+            <RollButton href={routes.contact} className="border border-black/15 bg-white">{faq.cta}</RollButton>
           </div>
         </Reveal>
 

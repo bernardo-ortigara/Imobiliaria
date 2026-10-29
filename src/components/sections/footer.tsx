@@ -1,15 +1,21 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { GridLines, TextRoll } from "@/components/ui";
 import { footer } from "@/lib/content";
 
-function FooterLink({ children, href = "#" }: { children: string; href?: string }) {
-  return (
+function FooterLink({ children, href }: { children: string; href: string }) {
+  const roll = <TextRoll text={children} direction="down" gap={18} className="t-18 text-white" />;
+  return href.startsWith("/") ? (
+    <Link href={href} className="group block pb-px">
+      {roll}
+    </Link>
+  ) : (
     <a href={href} className="group block pb-px">
-      <TextRoll text={children} direction="down" gap={18} className="t-18 text-white" />
+      {roll}
     </a>
   );
 }
@@ -30,7 +36,9 @@ export function Footer() {
               <p className="t-18 text-white/60">{footer.navTitle}</p>
               <nav className="flex flex-col items-start gap-[5px]">
                 {footer.nav.map((link) => (
-                  <FooterLink key={link}>{link}</FooterLink>
+                  <FooterLink key={link.href} href={link.href}>
+                    {link.label}
+                  </FooterLink>
                 ))}
               </nav>
             </div>
@@ -38,7 +46,7 @@ export function Footer() {
               <p className="t-18 text-white/60">{footer.followTitle}</p>
               <div className="flex items-center gap-4">
                 {footer.socials.map((s) => (
-                  <a key={s.name} href="#" aria-label={s.name} className="transition-transform duration-300 hover:scale-110">
+                  <a key={s.name} href={s.href} target="_blank" rel="noreferrer" aria-label={s.name} className="transition-transform duration-300 hover:scale-110">
                     <Image src={s.icon} alt="" width={20} height={20} className="size-5 object-contain" />
                   </a>
                 ))}
@@ -66,7 +74,9 @@ export function Footer() {
               <p className="t-18 text-white/60">{footer.pagesTitle}</p>
               <nav className="flex flex-col items-end gap-1">
                 {footer.pages.map((link) => (
-                  <FooterLink key={link}>{link}</FooterLink>
+                  <FooterLink key={link.href} href={link.href}>
+                    {link.label}
+                  </FooterLink>
                 ))}
               </nav>
             </div>
@@ -86,7 +96,7 @@ export function Footer() {
           style={{
             opacity,
             y,
-            fontSize: "calc(var(--content) * 0.2697)",
+            fontSize: "calc(var(--content) * 0.2729)",
             lineHeight: 0.889,
             letterSpacing: "-0.05em",
             fontVariationSettings: '"opsz" 14, "wght" 520',

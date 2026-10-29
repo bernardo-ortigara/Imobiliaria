@@ -1,11 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "motion/react";
 import { ArrowRightIcon } from "@/components/icons";
 import { EASE_HERO } from "@/components/motion";
 import { TextRoll } from "@/components/ui";
 import { hero } from "@/lib/content";
+import { routes } from "@/lib/routes";
+
+const MotionLink = motion.create(Link);
 
 const rise = (delay: number, y: number, scale: number) => ({
   initial: { opacity: 0, y, scale },
@@ -34,13 +38,13 @@ export function Hero() {
             <motion.p {...rise(0.5, 120, 0.8)} className="t-24 max-w-[450px] origin-left text-white">
               {hero.text}
             </motion.p>
-            <motion.a
+            <MotionLink
               {...rise(0.7, 120, 0.8)}
-              href="#imoveis"
+              href={routes.listings}
               className="group inline-flex items-center overflow-hidden rounded-[40px] bg-white pb-[10px] pl-[30px] pr-[40px] pt-[9px]"
             >
               <TextRoll text={hero.cta} className="t-15 text-ink" />
-            </motion.a>
+            </MotionLink>
           </div>
         </div>
 
@@ -59,9 +63,9 @@ export function Hero() {
             Luxterra
           </motion.p>
 
-          <motion.a
+          <MotionLink
             {...rise(0.9, 180, 0.8)}
-            href="#contato"
+            href={routes.contact}
             className="group relative flex h-[151px] w-[320px] shrink-0 items-end rounded-[2px] bg-white p-4 shadow-[0_0.6px_0.6px_-1.25px_rgba(0,0,0,0.18),0_2.29px_2.29px_-2.5px_rgba(0,0,0,0.16),0_10px_10px_-3.75px_rgba(0,0,0,0.06)] transition-colors duration-300 hover:bg-ink"
           >
             <div className="flex flex-col items-start gap-[30px]">
@@ -79,7 +83,7 @@ export function Hero() {
                 <ArrowRightIcon className="size-5 text-white" />
               </span>
             </span>
-          </motion.a>
+          </MotionLink>
         </div>
       </div>
     </section>

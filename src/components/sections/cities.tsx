@@ -1,7 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Reveal } from "@/components/motion";
 import { GridLines, SectionLabel } from "@/components/ui";
 import { cities } from "@/lib/content";
+import { cities as cityList } from "@/lib/data/cities";
+import { routes } from "@/lib/routes";
 
 export function Cities() {
   return (
@@ -22,10 +25,10 @@ export function Cities() {
           </Reveal>
         </div>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {cities.items.map((city) => (
-            <Reveal key={city.name} kind="spring" y={40}>
-              <a
-                href="#"
+          {cityList.map((city) => (
+            <Reveal key={city.slug} kind="spring" y={40}>
+              <Link
+                href={routes.city(city.slug)}
                 className="group/city relative flex aspect-[324/480] flex-col justify-end gap-[2px] overflow-hidden rounded-[2px] p-7"
               >
                 <Image
@@ -39,7 +42,7 @@ export function Cities() {
                 <span className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0)_42%,rgba(0,0,0,0.9)_84%)]" />
                 <span className="t-24 relative text-white">{city.name}</span>
                 <span className="t-16 relative max-w-[241px] text-white/85">{city.text}</span>
-              </a>
+              </Link>
             </Reveal>
           ))}
         </div>

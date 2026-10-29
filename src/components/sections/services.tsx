@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { Reveal } from "@/components/motion";
@@ -39,11 +40,11 @@ export function Services() {
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0)_22%,rgba(0,0,0,0.9)_75%,rgba(0,0,0,0.97)_100%)]" />
                 <div className="relative flex flex-col gap-5">
-                  <a href="#" className="flex flex-col gap-[6px]">
+                  <Link href={item.href} className="flex flex-col gap-[6px]">
                     <h3 className="t-34 text-white">{item.title}</h3>
                     <p className="t-16 text-white/85">{item.text}</p>
-                  </a>
-                  <RollButton className="w-full border border-white/80" textClassName="text-white">
+                  </Link>
+                  <RollButton href={item.href} className="w-full border border-white/80" textClassName="text-white">
                     {item.cta}
                   </RollButton>
                 </div>

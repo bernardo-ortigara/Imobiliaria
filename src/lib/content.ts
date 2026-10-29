@@ -1,16 +1,35 @@
-// All copy for the home page (pt-BR). Images live in /public/images.
+// All copy for the home page (pt-BR). Shared CMS-like data lives in ./data/*.
 
-export const img = (file: string) => `/images/${file}`;
+import { img } from "./data/img";
+import { routes } from "./routes";
+
+export { img };
 
 export const nav = {
-  links: ["Imóveis", "Corretores", "Sobre nós", "Contato"],
+  links: [
+    { label: "Imóveis", href: routes.listings },
+    { label: "Corretores", href: routes.agents },
+    { label: "Sobre nós", href: routes.about },
+    { label: "Contato", href: routes.contact },
+  ],
   menu: "Menu",
-  drawerLinks: ["Início", "Imóveis", "Corretores", "Sobre", "Blog", "Contato"],
+  drawerLinks: [
+    { label: "Início", href: routes.home },
+    { label: "Imóveis", href: routes.listings },
+    { label: "Corretores", href: routes.agents },
+    { label: "Sobre", href: routes.about },
+    { label: "Blog", href: routes.blog },
+    { label: "Contato", href: routes.contact },
+  ],
   contactTitle: "Contato",
   email: "hi@luxterra.com",
   phone: "+1-404-80-100",
   socialsTitle: "Redes sociais",
-  socials: ["X / Twitter", "Instagram", "Facebook"],
+  socials: [
+    { label: "X / Twitter", href: "https://x.com/" },
+    { label: "Instagram", href: "https://www.instagram.com/" },
+    { label: "Facebook", href: "https://www.facebook.com" },
+  ],
 };
 
 export const hero = {
@@ -53,58 +72,16 @@ export const stats = {
   ],
 };
 
-export type Listing = {
-  title: string;
-  address: string;
-  price: string;
-  area: string;
-  beds: string;
-  baths: string;
-  type: string;
-  image: string;
-};
-
-const sale = "À venda";
-const rent = "Para alugar";
-
 export const listings = {
   label: "Imóveis",
   title: "Nossos imóveis recentes",
-  tabs: [sale, rent],
   loadMore: "Carregar mais",
-  sale: [
-    { title: "Residência Moderna no Litoral", address: "Bayshore Gardens, Tampa, FL", price: "$749,000", area: "63 m²", beds: "3 Quartos", baths: "2,5 Banheiros", type: "Apartamento", image: img("7qddMcFEDswacgycG4I3MRkL56o.webp") },
-    { title: "Casa de Família à Beira-Rio", address: "Seminole Heights, Tampa, FL", price: "$629,500", area: "124 m²", beds: "4 Quartos", baths: "3 Banheiros", type: "Apartamento", image: img("vS2CA5Cg9J9whGTYIJAYs6DfPs.webp") },
-    { title: "Refúgio Urbano Contemporâneo", address: "Hyde Park, Tampa, FL", price: "$835,000", area: "49 m²", beds: "3 Quartos", baths: "3 Banheiros", type: "Apartamento", image: img("NCe5u2vNkJTDq99aE4z9j4nnomw.webp") },
-    { title: "Casa Artesanal à Beira do Lago", address: "Carrollwood, Tampa, FL", price: "$712,000", area: "22 m²", beds: "4 Quartos", baths: "2,5 Banheiros", type: "Sobrado", image: img("w5FoqrGf2ajYCpdOTgI4Rm4s1s.webp") },
-    { title: "Condomínio de Luxo na Baía", address: "Brickell, Miami, FL", price: "$930,000", area: "55 m²", beds: "2 Quartos", baths: "2 Banheiros", type: "Condomínio", image: img("phjPBLFz2C2keKmrYPkV1hNS92Y.webp") },
-    { title: "Villa Moderna no Litoral", address: "Coconut Grove, Miami, FL", price: "$889,000", area: "42 m²", beds: "4 Quartos", baths: "4,5 Banheiros", type: "Sobrado", image: img("D2Rosu46lk7tmVyYhuODw5KE6Qs.webp") },
-    { title: "Residência Urbana de Alto Padrão", address: "Downtown Miami, FL", price: "$859,000", area: "93 m²", beds: "2 Quartos", baths: "2 Banheiros", type: "Apartamento", image: img("PSKbxQ19IAeHVcKV76mEX7jNFSg.webp") },
-    { title: "Casa Contemporânea à Beira-Rio", address: "Riverside, Jacksonville, FL", price: "$870,000", area: "82 m²", beds: "3 Quartos", baths: "2 Banheiros", type: "Condomínio", image: img("waWK4WYu7GsknywLmZLBba4.webp") },
-    { title: "Residência Familiar no Subúrbio", address: "Mandarin, Jacksonville, FL", price: "$962,000", area: "60 m²", beds: "4 Quartos", baths: "3 Banheiros", type: "Apartamento", image: img("jL4FBYmOCekjED0jWCRDXfX91U.webp") },
-    { title: "Casa Moderna com Vista para o Lago", address: "Lake Nona, Orlando, FL", price: "$650,000", area: "120 m²", beds: "3 Quartos", baths: "3 Banheiros", type: "Apartamento", image: img("9rxOqeqLXpgcRWHLKqey06en38.webp") },
-  ] satisfies Listing[],
-  rent: [
-    { title: "Apartamento com Vista para o Mar", address: "Miami Beach, Miami, FL", price: "$4,200/mês", area: "22 m²", beds: "1 Quarto", baths: "1 Banheiro", type: "Apartamento", image: img("lV7kqMe9VUddEoXCFzhQzSaNQ.webp") },
-    { title: "Loft no Centro", address: "Downtown Jacksonville, FL", price: "$7,000/mês", area: "17 m²", beds: "1 Quarto", baths: "1 Banheiro", type: "Apartamento", image: img("YxxFm1LTRfwFGlA3h8r1cXZD3NM.webp") },
-    { title: "Apartamento com Jardim", address: "Southside, Jacksonville, FL", price: "$3,300/mês", area: "73 m²", beds: "2 Quartos", baths: "2 Banheiros", type: "Apartamento", image: img("G4YD2BizHvRF3WO5dGxnldAA34.webp") },
-    { title: "Apartamento em Edifício Alto", address: "Downtown Orlando, FL", price: "$1,900/mês", area: "27 m²", beds: "1 Quarto", baths: "1 Banheiro", type: "Apartamento", image: img("cepP00aJ0IdQavEivWSwJSPPAEQ.webp") },
-    { title: "Sobrado no Subúrbio", address: "Winter Park, Orlando, FL", price: "$2,300/mês", area: "80 m²", beds: "2 Quartos", baths: "2,5 Banheiros", type: "Sobrado", image: img("NcXkdQactuuaPNAXEpZ1fJkqCR0.webp") },
-  ] satisfies Listing[],
-  saleTag: sale,
-  rentTag: rent,
 };
 
 export const cities = {
   label: "Localizações",
   title: "Cidades em destaque",
   text: "Cidades da Flórida que nossos clientes amam pelo conforto, mercado forte e vida no litoral",
-  items: [
-    { name: "Tampa", text: "Vida à beira-mar, bairros animados e bons preços", image: img("8fFtFdelNtmUpvHVxzb5hMqYfK8.webp"), position: "50% 50%" },
-    { name: "Jacksonville", text: "Explore bairros litorâneos e muitas áreas verdes", image: img("pUfhVbYewD1MibDQ5Y0Z9LsuQBs.webp"), position: "8.5% 60.1%" },
-    { name: "Orlando", text: "Comunidades vibrantes, belas paisagens e estilo de vida", image: img("IKoqxtt8qK3DbVRrwyyLxuiA7r8.webp"), position: "50% 50%" },
-    { name: "Miami", text: "Aproveite casas de luxo no litoral e estilo urbano", image: img("Wh50vBYScZqjQOgfqElUflDbYc.webp"), position: "50% 50%" },
-  ],
 };
 
 export const why = {
@@ -128,9 +105,9 @@ export const services = {
   title: "O que oferecemos",
   text: "Simplificamos as decisões imobiliárias na Flórida com um serviço confiável, ágil e transparente",
   items: [
-    { title: "Venda", text: "Tornamos a busca pelo imóvel perfeito simples e rápida.", cta: "Ver imóveis", image: img("XKsmDQSogPzC6LtXHfPOGwsnCY8.jpg"), position: "50% 50%" },
-    { title: "Aluguel", text: "Tornamos simples encontrar o aluguel ideal nos bairros da Flórida.", cta: "Ver imóveis", image: img("YxxFm1LTRfwFGlA3h8r1cXZD3NM.webp"), position: "7.4% 91.3%" },
-    { title: "Avaliação", text: "Tornamos simples entender o valor do seu imóvel e os melhores negócios.", cta: "Solicitar avaliação", image: img("7xAiW7QuclLgT9ngSePY0K6hzNk.webp"), position: "50% 50%" },
+    { title: "Venda", text: "Tornamos a busca pelo imóvel perfeito simples e rápida.", cta: "Ver imóveis", href: routes.listings, image: img("XKsmDQSogPzC6LtXHfPOGwsnCY8.jpg"), position: "50% 50%" },
+    { title: "Aluguel", text: "Tornamos simples encontrar o aluguel ideal nos bairros da Flórida.", cta: "Ver imóveis", href: routes.listings, image: img("YxxFm1LTRfwFGlA3h8r1cXZD3NM.webp"), position: "7.4% 91.3%" },
+    { title: "Avaliação", text: "Tornamos simples entender o valor do seu imóvel e os melhores negócios.", cta: "Solicitar avaliação", href: routes.contact, image: img("7xAiW7QuclLgT9ngSePY0K6hzNk.webp"), position: "50% 50%" },
   ],
   band: img("bEDV64CvdngAwP4RJzVbYFidxmQ.webp"),
 };
@@ -139,11 +116,6 @@ export const agents = {
   label: "Corretores",
   title: "Nossos melhores corretores",
   cta: "Saiba mais",
-  items: [
-    { name: "Daniel Brooks", role: "Consultor imobiliário", cities: "Orlando, Tampa", image: img("WuPd0nCS70RQtJOJZrJXdiEKe2A.webp") },
-    { name: "Marcus Rivera", role: "Assessor imobiliário", cities: "Miami, Orlando", image: img("V3uTK5qRVRKckpvhYTlkVwvqU.webp") },
-    { name: "Oliver Grant", role: "Assessor de investimentos", cities: "Jacksonville, Tampa", image: img("CNNSjWYRKezz4GWWD65WmpRvk.webp") },
-  ],
 };
 
 export const testimonials = {
@@ -161,11 +133,6 @@ export const blog = {
   label: "Blog",
   title: "Análises recentes",
   text: "Novidades e orientações práticas sobre o mercado imobiliário da Flórida",
-  posts: [
-    { tag: "Investimentos", date: "10 jul 2024", title: "As formas mais inteligentes de investir em imóveis na Flórida", image: img("8fzfbl09J7vNXlRZgjyaKMLK8Q.webp") },
-    { tag: "Mercado imobiliário", date: "19 jun 2025", title: "O que vendedores na Flórida devem saber antes de anunciar", image: img("n9jzUZuNSxkgzqgWxnEUD2bHUS0.webp") },
-    { tag: "Mercado imobiliário", date: "5 set 2024", title: "Por que a Flórida segue como a escolha preferida de novos moradores", image: img("tz8mQp6A9VEmOspdBz5vm6uNZWY.webp") },
-  ],
 };
 
 export const faq = {
@@ -208,18 +175,30 @@ export const cta = {
 
 export const footer = {
   navTitle: "Menu de navegação",
-  nav: ["Início", "Imóveis", "Imóvel (CMS)", "Corretores", "Corretores (CMS)", "Contato"],
+  nav: [
+    { label: "Início", href: routes.home },
+    { label: "Imóveis", href: routes.listings },
+    { label: "Imóvel (CMS)", href: routes.listing("coastal-modern-residence") },
+    { label: "Corretores", href: routes.agents },
+    { label: "Corretores (CMS)", href: routes.agent("emily-carter") },
+    { label: "Contato", href: routes.contact },
+  ],
   followTitle: "Siga-nos",
   socials: [
-    { name: "Twitter", icon: img("NiQ8zZZvA5uSyYHG4blu8exRQRY.svg") },
-    { name: "Facebook", icon: img("E3cEfzwUiGCYPj1rDZaNeRwxqw.svg") },
-    { name: "Instagram", icon: img("VXbPz9XJZu7uTyhwsxjBKQe7RK8.svg") },
+    { name: "Twitter", href: "https://x.com/", icon: img("NiQ8zZZvA5uSyYHG4blu8exRQRY.svg") },
+    { name: "Facebook", href: "https://www.facebook.com", icon: img("E3cEfzwUiGCYPj1rDZaNeRwxqw.svg") },
+    { name: "Instagram", href: "https://www.instagram.com/", icon: img("VXbPz9XJZu7uTyhwsxjBKQe7RK8.svg") },
   ],
   newsletter: "Assine nossa newsletter para receber novidades do mercado, novos imóveis, análises exclusivas e muito mais",
   emailPlaceholder: "Seu endereço de e-mail",
   subscribe: "Assinar",
   pagesTitle: "Páginas",
-  pages: ["Sobre nós", "Blog", "Blog (CMS)", "404"],
+  pages: [
+    { label: "Sobre nós", href: routes.about },
+    { label: "Blog", href: routes.blog },
+    { label: "Blog (CMS)", href: routes.post("how-florida-buyers-navigate-today-s-shifting-housing-market") },
+    { label: "404", href: routes.notFound },
+  ],
   contactTitle: "Contato",
   phone: "+1-404-506-100",
   email: "info@luxterra.com",

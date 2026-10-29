@@ -1,12 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { ArrowCtaIcon } from "@/components/icons";
 import { Reveal } from "@/components/motion";
 import { TextRoll } from "@/components/ui";
 import { cta } from "@/lib/content";
+import { routes } from "@/lib/routes";
 
 export function Cta() {
   const ref = useRef<HTMLElement>(null);
@@ -37,8 +39,8 @@ export function Cta() {
           <p className="t-19 text-white/85">{cta.text}</p>
         </Reveal>
         <Reveal>
-          <a
-            href="#"
+          <Link
+            href={routes.contact}
             className="group relative flex h-[50px] items-center gap-4 overflow-hidden rounded-[2px] bg-white py-[5px] pl-[6px] pr-[26px]"
           >
             <span className="absolute bottom-[3px] left-1 top-[3px] w-[44px] rounded-[2px] bg-purple transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-[calc(100%-9px)]" />
@@ -53,7 +55,7 @@ export function Cta() {
             <span className="relative">
               <TextRoll text={cta.button} className="t-18 text-ink" secondClassName="t-18 text-white" />
             </span>
-          </a>
+          </Link>
         </Reveal>
       </div>
     </section>

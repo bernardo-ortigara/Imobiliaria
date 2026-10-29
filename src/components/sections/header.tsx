@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { useLenis } from "lenis/react";
 import { useEffect, useState } from "react";
@@ -7,10 +9,19 @@ import { LogoMark } from "@/components/icons";
 import { SPRING_NAV } from "@/components/motion";
 import { TextRoll } from "@/components/ui";
 import { nav } from "@/lib/content";
+import { routes } from "@/lib/routes";
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const lenis = useLenis();
+  const pathname = usePathname();
+
+  // Close the drawer after any navigation (e.g. browser back).
+  const [lastPath, setLastPath] = useState(pathname);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
+    setOpen(false);
+  }
 
   useEffect(() => {
     if (open) lenis?.stop();
@@ -29,15 +40,15 @@ export function Header() {
         transition={{ ...SPRING_NAV, delay: 0.3 }}
       >
         <nav className="flex h-[52px] items-center justify-between rounded-[3px] bg-white px-[26px] py-3 shadow-[0_0.6px_0.6px_-1.25px_rgba(0,0,0,0.09),0_2.29px_2.29px_-2.5px_rgba(0,0,0,0.08),0_10px_10px_-3.75px_rgba(0,0,0,0.03)]">
-          <a href="#" aria-label="Luxterra" className="flex w-[85px] items-start transition-opacity duration-300 hover:opacity-80">
+          <Link href={routes.home} aria-label="Luxterra" className="flex w-[85px] items-start transition-opacity duration-300 hover:opacity-80">
             <LogoMark className="h-[28px] w-[44px]" />
-          </a>
+          </Link>
           <ul className="hidden items-center gap-8 md:flex">
             {nav.links.map((link) => (
-              <li key={link}>
-                <a href="#" className="group block pb-px">
-                  <TextRoll text={link} direction="down" gap={18} className="t-18 text-ink" />
-                </a>
+              <li key={link.href}>
+                <Link href={link.href} className="group block pb-px">
+                  <TextRoll text={link.label} direction="down" gap={18} className="t-18 text-ink" />
+                </Link>
               </li>
             ))}
           </ul>
@@ -90,10 +101,10 @@ export function Header() {
               </button>
               <ul className="flex flex-col gap-4">
                 {nav.drawerLinks.map((link) => (
-                  <li key={link}>
-                    <a href="#" onClick={() => setOpen(false)} className="group block w-fit pb-px">
-                      <TextRoll text={link} direction="down" gap={18} className="t-34 text-white" />
-                    </a>
+                  <li key={link.href}>
+                    <Link href={link.href} onClick={() => setOpen(false)} className="group block w-fit pb-px">
+                      <TextRoll text={link.label} direction="down" gap={18} className="t-34 text-white" />
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -109,8 +120,8 @@ export function Header() {
               <div className="flex flex-col gap-[6px]">
                 <p className="t-18 text-white/60">{nav.socialsTitle}</p>
                 {nav.socials.map((s) => (
-                  <a key={s} href="#" className="t-18 text-white underline">
-                    {s}
+                  <a key={s.label} href={s.href} target="_blank" rel="noreferrer" className="t-18 text-white underline">
+                    {s.label}
                   </a>
                 ))}
               </div>

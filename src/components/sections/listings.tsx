@@ -1,70 +1,20 @@
 "use client";
 
-import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import { AreaIcon, BathIcon, BedIcon } from "@/components/icons";
+import { ListingCard } from "@/components/cards";
 import { EASE_REVEAL, Reveal } from "@/components/motion";
 import { GridLines, SectionLabel } from "@/components/ui";
-import { listings, type Listing } from "@/lib/content";
+import { listings } from "@/lib/content";
+import { rentListings, saleListings, statusLabel } from "@/lib/data/listings";
 
 const PAGE = 6;
-
-function ListingCard({ item, tag }: { item: Listing; tag: string }) {
-  return (
-    <article className="flex flex-col gap-[18px]">
-      <a href="#" className="group/card relative block aspect-[436/313] overflow-hidden rounded-[2px]">
-        <Image
-          src={item.image}
-          alt={item.title}
-          fill
-          sizes="(min-width: 1024px) 436px, 100vw"
-          className="zoom-img object-cover group-hover/card:scale-[1.02]"
-        />
-        <span className="absolute left-3 top-3 flex gap-2">
-          {[tag, item.type].map((chip) => (
-            <span key={chip} className="t-13 rounded-[24px] bg-chip px-3 py-[6px] text-ink">
-              {chip}
-            </span>
-          ))}
-        </span>
-      </a>
-      <div className="flex flex-col gap-[6px] px-[6px]">
-        <div className="flex items-start justify-center gap-5">
-          <div className="flex min-w-0 flex-1 flex-col gap-px">
-            <a href="#" className="t-17 text-ink-soft">
-              {item.title}
-            </a>
-            <p className="t-15 text-black/62">{item.address}</p>
-          </div>
-          <p className="t-17 shrink-0 text-black/70">{item.price}</p>
-        </div>
-        <div className="flex flex-wrap items-center gap-5 text-black/62">
-          {[
-            [AreaIcon, item.area],
-            [BedIcon, item.beds],
-            [BathIcon, item.baths],
-          ].map(([Icon, label]) => {
-            const I = Icon as typeof AreaIcon;
-            return (
-              <span key={label as string} className="flex items-center gap-2">
-                <I className="size-5 text-[#73737d]" />
-                <span className="t-15">{label as string}</span>
-              </span>
-            );
-          })}
-        </div>
-      </div>
-    </article>
-  );
-}
 
 export function Listings() {
   const [tab, setTab] = useState<"sale" | "rent">("sale");
   const [expanded, setExpanded] = useState(false);
-  const items = tab === "sale" ? listings.sale : listings.rent;
+  const items = tab === "sale" ? saleListings : rentListings;
   const visible = expanded ? items : items.slice(0, PAGE);
-  const tag = tab === "sale" ? listings.saleTag : listings.rentTag;
 
   return (
     <section id="imoveis" className="relative bg-white px-wrap">
@@ -81,7 +31,7 @@ export function Listings() {
 
         <div className="flex w-full flex-col items-center gap-[30px]">
           <Reveal className="flex gap-[10px]">
-            {(["sale", "rent"] as const).map((key, i) => {
+            {(["sale", "rent"] as const).map((key) => {
               const active = tab === key;
               return (
                 <button
@@ -96,7 +46,7 @@ export function Listings() {
                   }`}
                 >
                   <span className={`t-15 block transition-opacity duration-300 ${active ? "hover:opacity-80" : "opacity-80 hover:opacity-100"}`}>
-                    {listings.tabs[i]}
+                    {statusLabel[key]}
                   </span>
                 </button>
               );
@@ -115,12 +65,12 @@ export function Listings() {
               >
                 {visible.map((item, i) => (
                   <motion.div
-                    key={item.title}
+                    key={item.slug}
                     initial={i >= PAGE ? { opacity: 0, y: 20 } : false}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, ease: EASE_REVEAL, delay: i >= PAGE ? (i - PAGE) * 0.06 : 0 }}
                   >
-                    <ListingCard item={item} tag={tag} />
+                    <ListingCard item={item} />
                   </motion.div>
                 ))}
               </motion.div>
