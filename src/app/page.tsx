@@ -7,6 +7,7 @@ import { Hero } from "@/components/sections/hero";
 import { Listings } from "@/components/sections/listings";
 import { ImageBand, Services } from "@/components/sections/services";
 import { Stats } from "@/components/sections/stats";
+import { Testimonials } from "@/components/sections/testimonials";
 import { WhyUs } from "@/components/sections/why-us";
 
 export const metadata: Metadata = {
@@ -24,6 +25,7 @@ export default function Home() {
       <Services />
       <ImageBand />
       <Agents />
+      <Testimonials />
       <Faq />
       <Cta />
     </main>

@@ -110,6 +110,17 @@ export const agents = {
   cta: "Ver perfil",
 };
 
+// Verbatim from the old site (hsantiniimoveis.com.br), which shows only quote + name.
+export const testimonials = {
+  label: "Depoimentos",
+  title: "O que nossos clientes dizem",
+  items: [
+    { quote: "A experiência com o HSantini Imóveis foi excepcional. Profissionalismo e dedicação que superaram minhas expectativas na venda.", name: "Ana Paula S." },
+    { quote: "Encontrei meu imóvel ideal em Caxias do Sul graças à consultoria atenciosa e ao profundo conhecimento do mercado.", name: "Carlos M." },
+    { quote: "Transparência e segurança em todo o processo de compra. Recomendo o HSantini Imóveis para todos que buscam confiança.", name: "Mariana L." },
+  ],
+};
+
 export const faq = {
   label: "Dúvidas",
   title: "Perguntas frequentes",
