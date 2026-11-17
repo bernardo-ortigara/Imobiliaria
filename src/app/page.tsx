@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import { About } from "@/components/sections/about";
 import { Agents } from "@/components/sections/agents";
-import { Cities } from "@/components/sections/cities";
 import { Cta } from "@/components/sections/cta";
 import { Faq } from "@/components/sections/faq";
 import { Hero } from "@/components/sections/hero";
 import { Listings } from "@/components/sections/listings";
 import { ImageBand, Services } from "@/components/sections/services";
 import { Stats } from "@/components/sections/stats";
-import { Testimonials } from "@/components/sections/testimonials";
 import { WhyUs } from "@/components/sections/why-us";
 
 export const metadata: Metadata = {
@@ -22,12 +20,10 @@ export default function Home() {
       <About />
       <Stats />
       <Listings />
-      <Cities />
       <WhyUs />
       <Services />
       <ImageBand />
       <Agents />
-      <Testimonials />
       <Faq />
       <Cta />
     </main>

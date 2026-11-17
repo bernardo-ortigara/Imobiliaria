@@ -63,10 +63,10 @@ export const stats = {
   title: "Experiência que gera confiança",
   image: img("Jw214vO1mG6pgbDZntulBn5w9uA.jpg"),
   items: [
+    // Same figures as the old site (hsantiniimoveis.com.br).
     { value: 8, suffix: "+", label: "Anos de experiência" },
+    { value: 100, suffix: "+", label: "Imóveis avaliados" },
     { value: 99, suffix: "%", label: "Clientes satisfeitos" },
-    { value: 3, suffix: "", label: "Etapas até a escritura" },
-    { value: 10, suffix: "h", label: "De atendimento por dia" },
   ],
 };
 
@@ -74,12 +74,6 @@ export const listings = {
   label: "Imóveis",
   title: "Nossos imóveis recentes",
   loadMore: "Carregar mais",
-};
-
-export const cities = {
-  label: "Localizações",
-  title: "Cidades em destaque",
-  text: "Caxias do Sul e região, escolhidas pela qualidade de vida e pela valorização",
 };
 
 export const why = {
@@ -114,17 +108,6 @@ export const agents = {
   label: "Corretor",
   title: "Conheça seu corretor",
   cta: "Ver perfil",
-};
-
-export const testimonials = {
-  label: "Depoimentos",
-  title: "O que dizem os clientes",
-  items: [
-    { quote: "A experiência com a HSantini Imóveis foi excepcional. Profissionalismo e dedicação que superaram minhas expectativas na venda.", name: "Ana Paula S.", role: "Vendedora", image: img("gA1SCU5nhjQJUNwN4dAS9raqw.webp") },
-    { quote: "Encontrei meu imóvel ideal em Caxias do Sul graças à consultoria atenciosa e ao profundo conhecimento do mercado.", name: "Carlos M.", role: "Comprador", image: img("2dvCOPoaEniJFuC835ZxLdqZ0.webp") },
-    { quote: "Transparência e segurança em todo o processo de compra. Recomendo a HSantini Imóveis para todos que buscam confiança.", name: "Mariana L.", role: "Compradora", image: img("4rwqWDnB1SHrRcrhRbxhsOwd6g4.webp") },
-    { quote: "Atendimento excepcional do início ao fim. A HSantini Imóveis entendeu nossas necessidades e achou ótimas opções para o nosso orçamento.", name: "Michael Brown", role: "Cliente em mudança", image: img("1BVmvoe7as3QjXN6kSDy48F90w.webp") },
-  ],
 };
 
 export const faq = {

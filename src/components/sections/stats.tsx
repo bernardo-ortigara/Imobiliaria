@@ -19,7 +19,7 @@ export function Stats() {
             <p className="t-34 text-center text-white">{stats.title}</p>
           </Reveal>
         </div>
-        <Reveal className="relative grid w-full max-w-[1100px] grid-cols-2 gap-10 lg:flex lg:flex-row">
+        <Reveal className="relative grid w-full max-w-[1100px] grid-cols-1 gap-10 sm:grid-cols-3 lg:flex lg:flex-row">
           {stats.items.map((item, i) => (
             <Fragment key={item.label}>
               {i > 0 && <span className="hidden w-px self-stretch bg-white/10 lg:block" />}
