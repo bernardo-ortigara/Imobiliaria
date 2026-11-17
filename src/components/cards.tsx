@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { AreaIcon, BathIcon, BedIcon } from "@/components/icons";
-import { statusLabel, type Listing } from "@/lib/data/listings";
+import { AreaIcon, BathIcon, BedIcon, CarIcon } from "@/components/icons";
+import { priceOnRequest, statusLabel, type Listing } from "@/lib/data/listings";
 import { routes } from "@/lib/routes";
 
-/** Listing card (image + chips, title/address/price, area/beds/baths). Hover: image zoom 1.02. */
+/** Listing card (image + chips, title/address/price, specs that are set). Hover: image zoom 1.02. */
 export function ListingCard({ item }: { item: Listing }) {
   const href = routes.listing(item.slug);
   return (
@@ -33,22 +33,24 @@ export function ListingCard({ item }: { item: Listing }) {
             </Link>
             <p className="t-15 text-black/62">{item.address}</p>
           </div>
-          <p className="t-17 shrink-0 text-black/70">{item.price}</p>
+          <p className="t-17 shrink-0 text-black/70">{item.price ?? priceOnRequest}</p>
         </div>
         <div className="flex flex-wrap items-center gap-5 text-black/62">
-          {[
-            [AreaIcon, item.area],
-            [BedIcon, item.beds],
-            [BathIcon, item.baths],
-          ].map(([Icon, label]) => {
-            const I = Icon as typeof AreaIcon;
-            return (
-              <span key={label as string} className="flex items-center gap-2">
-                <I className="size-5 text-[#73737d]" />
-                <span className="t-15">{label as string}</span>
+          {(
+            [
+              [AreaIcon, item.area],
+              [BedIcon, item.beds],
+              [BathIcon, item.baths],
+              [CarIcon, item.parking],
+            ] as const
+          )
+            .filter((spec): spec is [typeof AreaIcon, string] => Boolean(spec[1]))
+            .map(([Icon, label]) => (
+              <span key={label} className="flex items-center gap-2">
+                <Icon className="size-5 text-[#73737d]" />
+                <span className="t-15">{label}</span>
               </span>
-            );
-          })}
+            ))}
         </div>
       </div>
     </article>

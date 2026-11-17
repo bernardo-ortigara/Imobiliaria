@@ -7,24 +7,46 @@ import { EASE_HERO } from "@/components/motion";
 
 type Props = {
   title: string;
-  images: [string, string, string];
-  count: number;
+  /** Cover first. 3+ photos → mosaic; fewer → the cover alone. */
+  images: string[];
   showAll: string;
 };
 
-/** Top photo mosaic (1 large + 2 stacked). Appears on load: fade + scale 0.9 + rise 120px, 1s, delay 0.8s. */
-export function ImovelHero({ title, images, count, showAll }: Props) {
+const appear = {
+  initial: { opacity: 0, scale: 0.9, y: 120 },
+  animate: { opacity: 1, scale: 1, y: 0 },
+  transition: { duration: 1, ease: EASE_HERO, delay: 0.8 },
+} as const;
+
+/**
+ * Top photos. Appears on load: fade + scale 0.9 + rise 120px, 1s, delay 0.8s.
+ * - 3+ photos: mosaic (1 large + 2 stacked) with "Ver todas as imagens".
+ * - Otherwise: the whole cover (often a portrait phone photo) over a blurred copy of itself.
+ */
+export function ImovelHero({ title, images, showAll }: Props) {
+  if (images.length < 3) return <SingleHero title={title} src={images[0]} />;
+  return <MosaicHero title={title} images={images} showAll={showAll} />;
+}
+
+function SingleHero({ title, src }: { title: string; src: string }) {
+  return (
+    <section className="bg-white px-wrap pt-[90px]">
+      <motion.div {...appear} className="relative h-[70svh] max-h-[560px] min-h-[360px] overflow-hidden rounded-[2px] bg-ink">
+        <Image src={src} alt="" fill sizes="10vw" className="scale-110 object-cover opacity-60 blur-2xl" />
+        <Image src={src} alt={title} fill priority sizes="(min-width: 1024px) 1356px, 100vw" className="object-contain" />
+      </motion.div>
+    </section>
+  );
+}
+
+function MosaicHero({ title, images, showAll }: Props) {
   const lenis = useLenis();
   const [main, second, third] = images;
+  const count = images.length;
 
   return (
     <section className="bg-white px-wrap pt-[90px]">
-      <motion.div
-        className="flex flex-col gap-3 lg:h-[560px] lg:flex-row"
-        initial={{ opacity: 0, scale: 0.9, y: 120 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 1, ease: EASE_HERO, delay: 0.8 }}
-      >
+      <motion.div {...appear} className="flex flex-col gap-3 lg:h-[560px] lg:flex-row">
         <div className="relative aspect-[864/560] overflow-hidden rounded-[2px] lg:aspect-auto lg:flex-[864]">
           <Image src={main} alt={title} fill priority sizes="(min-width: 1024px) 864px, 100vw" className="object-cover" />
         </div>

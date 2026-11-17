@@ -3,7 +3,7 @@
 import type { Metadata } from "next";
 import { agents } from "@/lib/data/agents";
 import { cities } from "@/lib/data/cities";
-import { listings, statusLabel, type Listing } from "@/lib/data/listings";
+import { listings, priceOnRequest, statusLabel, type Listing } from "@/lib/data/listings";
 import { routes } from "@/lib/routes";
 
 export const metadata: Metadata = {
@@ -23,7 +23,8 @@ export const imoveis = {
     type: "Tipo",
     city: "Cidade",
   },
-  types: ["Apartamento", "Sobrado", "Condomínio"],
+  /** Filter options, from the listings themselves. */
+  types: [...new Set(listings.map((l) => l.type))],
   empty: "Nenhum imóvel encontrado",
   loadMore: "Carregar mais",
   pageSize: 6,
@@ -34,31 +35,13 @@ export const imoveis = {
   },
 };
 
-// Grid order of the original /listings page (CMS order, sale and rent mixed).
-const ORDER = [
-  "coastal-modern-residence",
-  "riverside-family-home",
-  "contemporary-urban-retreat",
-  "lakeside-craftsman-home",
-  "luxury-bayfront-condo",
-  "modern-coastal-villa",
-  "high-rise-city-residence",
-  "oceanview-apartment",
-  "riverside-contemporary-home",
-  "suburban-family-residence",
-  "downtown-loft-apartment",
-  "garden-style-apartment",
-  "modern-lakeview-home",
-  "downtown-high-rise-apartment",
-  "suburban-townhome",
-];
-const rank = (l: Listing) => {
-  const i = ORDER.indexOf(l.slug);
-  return i === -1 ? ORDER.length : i;
-};
-export const orderedListings = [...listings].sort((a, b) => rank(a) - rank(b));
+// Grid order = data order (same as the old site).
+export const orderedListings = listings;
 
-export const statusOptions = (Object.keys(statusLabel) as (keyof typeof statusLabel)[]).map((value) => ({
+// Only statuses that have listings (e.g. no "Para alugar" option while nothing is for rent).
+export const statusOptions = (Object.keys(statusLabel) as (keyof typeof statusLabel)[])
+  .filter((value) => listings.some((l) => l.status === value))
+  .map((value) => ({
   value,
   label: statusLabel[value],
 }));
@@ -73,7 +56,7 @@ export const searchIndex: SearchEntry[] = [
   ...listings.map((l) => ({
     title: l.title,
     href: routes.listing(l.slug),
-    keywords: [l.address, l.type, statusLabel[l.status], l.price].join(" "),
+    keywords: [l.address, l.type, statusLabel[l.status], l.price ?? priceOnRequest].join(" "),
   })),
   ...cities.map((c) => ({
     title: c.name,

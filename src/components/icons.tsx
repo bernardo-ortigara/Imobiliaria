@@ -57,6 +57,18 @@ export function BedIcon(props: IconProps) {
   );
 }
 
+/** car (parking spaces) — drawn to match the bed/bath icons: 24px grid, 1.5 stroke */
+export function CarIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <path d="M3 16.5V12.75L5.1 7.5A1.5 1.5 0 0 1 6.5 6.5h11a1.5 1.5 0 0 1 1.4 1l2.1 5.25v3.75" />
+      <path d="M3 12.75h18v3.75a.75.75 0 0 1-.75.75H3.75A.75.75 0 0 1 3 16.5z" />
+      <path d="M5.25 17.25v1.5M18.75 17.25v1.5" />
+      <path d="M6.75 15h1.5M15.75 15h1.5" />
+    </svg>
+  );
+}
+
 /** bath — 20x20, default color rgb(115, 115, 125) */
 export function BathIcon(props: IconProps) {
   return (

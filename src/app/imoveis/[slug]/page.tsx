@@ -47,8 +47,7 @@ export default async function ImovelPage({ params }: Props) {
     <main>
       <ImovelHero
         title={listing.title}
-        images={[listing.image, ...detail.hero]}
-        count={detail.gallery.length}
+        images={[listing.image, ...detail.photos]}
         showAll={imovel.showAll}
       />
       <ImovelContent listing={listing} detail={detail} agent={agent} />

@@ -4,10 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, type Transition } from "motion/react";
 import { useState, type FormEvent, type ReactNode } from "react";
-import { AreaIcon, BathIcon, BedIcon } from "@/components/icons";
+import { AreaIcon, BathIcon, BedIcon, CarIcon } from "@/components/icons";
 import { EASE_HERO, EASE_SLIDE } from "@/components/motion";
 import type { Agent } from "@/lib/data/agents";
-import type { Listing } from "@/lib/data/listings";
+import { priceOnRequest, type Listing } from "@/lib/data/listings";
 import { routes } from "@/lib/routes";
 import { openWhatsApp, siteUrl } from "@/lib/site";
 import { agentAvatarPosition, imovel, type ImovelDetail } from "@/lib/content/imovel";
@@ -29,12 +29,18 @@ const firstWord = (s: string) => s.split(" ")[0];
 type Props = { listing: Listing; detail: ImovelDetail; agent: Agent };
 
 export function ImovelContent({ listing, detail, agent }: Props) {
+  // Only the specs the listing has.
+  const specs: [string, string | undefined, typeof AreaIcon][] = [
+    [imovel.details.area, listing.area, AreaIcon],
+    [imovel.details.beds, listing.beds, BedIcon],
+    [imovel.details.baths, listing.baths, BathIcon],
+    [imovel.details.parking, listing.parking, CarIcon],
+  ];
   const stats: [string, string, typeof AreaIcon | null][] = [
-    [imovel.details.area, firstWord(listing.area), AreaIcon],
-    [imovel.details.beds, firstWord(listing.beds), BedIcon],
-    [imovel.details.baths, firstWord(listing.baths), BathIcon],
+    ...specs.flatMap(([label, value, Icon]) => (value ? [[label, firstWord(value), Icon] as [string, string, typeof AreaIcon]] : [])),
     [imovel.details.type, listing.type, null],
   ];
+  const photos = [listing.image, ...detail.photos];
 
   return (
     <section className="bg-white px-8 pb-[120px] pt-[90px]">
@@ -42,7 +48,7 @@ export function ImovelContent({ listing, detail, agent }: Props) {
         <motion.div {...appear(0.9)} className="flex w-full min-w-0 flex-col gap-10 lg:flex-1">
           {/* Title + price + stats */}
           <div className="flex flex-col gap-10">
-            <div className="flex items-end gap-8">
+            <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-end sm:gap-8">
               <div className="flex min-w-0 flex-1 flex-col gap-[6px]">
                 <p className="flex items-center gap-[10px]">
                   <LocationPinIcon className="size-[18px] shrink-0 text-black/70" />
@@ -52,7 +58,7 @@ export function ImovelContent({ listing, detail, agent }: Props) {
               </div>
               <div className="flex shrink-0 flex-col gap-[6px]">
                 <p className="t-16 text-black/62">{imovel.priceLabel}</p>
-                <p className={T28}>{listing.price}</p>
+                <p className={T28}>{listing.price ?? priceOnRequest}</p>
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-x-10 gap-y-5 py-4 shadow-[inset_0_1px_0_var(--color-line),inset_0_-1px_0_var(--color-line)]">
@@ -79,38 +85,46 @@ export function ImovelContent({ listing, detail, agent }: Props) {
             <AccordionItem title={imovel.accordion.details}>
               <Bullets items={detail.details} />
             </AccordionItem>
-            <AccordionItem title={imovel.accordion.location}>
-              <p className="t-18 text-black/70">{detail.location}</p>
-            </AccordionItem>
-            <AccordionItem title={imovel.accordion.features}>
-              <Bullets items={detail.features} />
-            </AccordionItem>
+            {detail.location && (
+              <AccordionItem title={imovel.accordion.location}>
+                <p className="t-18 text-black/70">{detail.location}</p>
+              </AccordionItem>
+            )}
+            {detail.features && (
+              <AccordionItem title={imovel.accordion.features}>
+                <Bullets items={detail.features} />
+              </AccordionItem>
+            )}
           </div>
 
-          {/* Gallery ("Ver todas as imagens" scrolls here). Fills column by column, like the original. */}
-          <div id="images" className="flex flex-col gap-7 pb-[50px] pt-5 shadow-[inset_0_-1px_0_var(--color-line-soft)]">
-            <h2 className={T28}>{imovel.gallery}</h2>
-            <div className="grid grid-flow-col grid-cols-2 grid-rows-2 gap-4">
-              {detail.gallery.map((src) => (
-                <div key={src} className="relative aspect-[332/214]">
-                  <Image src={src} alt="" fill sizes="(min-width: 1024px) 333px, 50vw" className="object-cover" />
-                </div>
-              ))}
+          {/* Gallery ("Ver todas as imagens" scrolls here), only when there's more than the cover. */}
+          {photos.length > 1 && (
+            <div id="images" className="flex flex-col gap-7 pb-[50px] pt-5 shadow-[inset_0_-1px_0_var(--color-line-soft)]">
+              <h2 className={T28}>{imovel.gallery}</h2>
+              <div className="grid grid-cols-2 gap-4">
+                {photos.map((src) => (
+                  <div key={src} className="relative aspect-[332/214]">
+                    <Image src={src} alt="" fill sizes="(min-width: 1024px) 333px, 50vw" className="object-cover" />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
-          {/* Map */}
-          <div className="flex flex-col gap-7">
-            <h2 className={T28}>{imovel.map}</h2>
-            <div className="h-[400px] overflow-hidden rounded-[2px]">
-              <iframe
-                title={`${imovel.map}: ${listing.address}`}
-                src={`https://maps.google.com/maps?q=${encodeURIComponent(detail.coords)}&z=15&output=embed`}
-                className="size-full border-0"
-                loading="lazy"
-              />
+          {/* Map, only when the location is public. */}
+          {detail.mapQuery && (
+            <div className="flex flex-col gap-7">
+              <h2 className={T28}>{imovel.map}</h2>
+              <div className="h-[400px] overflow-hidden rounded-[2px]">
+                <iframe
+                  title={`${imovel.map}: ${listing.address}`}
+                  src={`https://maps.google.com/maps?q=${encodeURIComponent(detail.mapQuery)}&z=15&output=embed`}
+                  className="size-full border-0"
+                  loading="lazy"
+                />
+              </div>
             </div>
-          </div>
+          )}
         </motion.div>
 
         <motion.aside {...appear(1)} className="w-full lg:sticky lg:top-10 lg:w-[410px] lg:shrink-0">

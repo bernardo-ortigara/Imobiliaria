@@ -10,8 +10,11 @@ import { rentListings, saleListings, statusLabel } from "@/lib/data/listings";
 
 const PAGE = 6;
 
+// The sale/rent switch only shows when both have listings.
+const TABS = (["sale", "rent"] as const).filter((key) => (key === "sale" ? saleListings : rentListings).length > 0);
+
 export function Listings() {
-  const [tab, setTab] = useState<"sale" | "rent">("sale");
+  const [tab, setTab] = useState<"sale" | "rent">(TABS[0] ?? "sale");
   const [expanded, setExpanded] = useState(false);
   const items = tab === "sale" ? saleListings : rentListings;
   const visible = expanded ? items : items.slice(0, PAGE);
@@ -30,28 +33,30 @@ export function Listings() {
         </div>
 
         <div className="flex w-full flex-col items-center gap-[30px]">
-          <Reveal className="flex gap-[10px]">
-            {(["sale", "rent"] as const).map((key) => {
-              const active = tab === key;
-              return (
-                <button
-                  key={key}
-                  type="button"
-                  onClick={() => {
-                    setTab(key);
-                    setExpanded(false);
-                  }}
-                  className={`cursor-pointer rounded-[1px] px-4 py-[6px] transition-colors duration-300 ${
-                    active ? "bg-ink text-white" : "bg-mist text-ink"
-                  }`}
-                >
-                  <span className={`t-15 block transition-opacity duration-300 ${active ? "hover:opacity-80" : "opacity-80 hover:opacity-100"}`}>
-                    {statusLabel[key]}
-                  </span>
-                </button>
-              );
-            })}
-          </Reveal>
+          {TABS.length > 1 && (
+            <Reveal className="flex gap-[10px]">
+              {TABS.map((key) => {
+                const active = tab === key;
+                return (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => {
+                      setTab(key);
+                      setExpanded(false);
+                    }}
+                    className={`cursor-pointer rounded-[1px] px-4 py-[6px] transition-colors duration-300 ${
+                      active ? "bg-ink text-white" : "bg-mist text-ink"
+                    }`}
+                  >
+                    <span className={`t-15 block transition-opacity duration-300 ${active ? "hover:opacity-80" : "opacity-80 hover:opacity-100"}`}>
+                      {statusLabel[key]}
+                    </span>
+                  </button>
+                );
+              })}
+            </Reveal>
+          )}
 
           <Reveal className="w-full">
             <AnimatePresence mode="wait" initial={false}>
