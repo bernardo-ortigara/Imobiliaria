@@ -10,7 +10,7 @@ import type { Agent } from "@/lib/data/agents";
 import { corretor, type AgentProfile as Profile } from "@/lib/content/corretor";
 import { routes } from "@/lib/routes";
 import { appear } from "./appear";
-import { EnvelopeIcon, InfoIcon, LinkedinLogoIcon, MapPinIcon, PhoneIcon, XLogoIcon } from "./icons";
+import { EnvelopeIcon, InfoIcon, InstagramLogoIcon, MapPinIcon, PhoneIcon } from "./icons";
 
 const EASE_BTN = "ease-[cubic-bezier(0.22,1,0.36,1)]";
 
@@ -35,11 +35,8 @@ export function AgentProfile({ agent, profile }: { agent: Agent; profile: Profil
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <SocialLink href={corretor.linkedin} label="LinkedIn">
-              <LinkedinLogoIcon className="size-6" />
-            </SocialLink>
-            <SocialLink href={corretor.x} label="X">
-              <XLogoIcon className="size-6" />
+            <SocialLink href={agent.instagram} label="Instagram">
+              <InstagramLogoIcon className="size-6" />
             </SocialLink>
           </div>
         </motion.div>
@@ -51,7 +48,7 @@ export function AgentProfile({ agent, profile }: { agent: Agent; profile: Profil
               <ContactRow icon={InfoIcon}>{profile.bio}</ContactRow>
               <ContactRow icon={MapPinIcon}>{agent.cities}</ContactRow>
               <ContactRow icon={PhoneIcon}>
-                <a href={`tel:${profile.phone}`} className="transition-colors duration-300 hover:text-black/46">
+                <a href={`tel:${profile.phone.replace(/\D/g, "")}`} className="transition-colors duration-300 hover:text-black/46">
                   {profile.phone}
                 </a>
               </ContactRow>

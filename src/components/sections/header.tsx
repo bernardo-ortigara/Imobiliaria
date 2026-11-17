@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { useLenis } from "lenis/react";
 import { useEffect, useState } from "react";
-import { LogoMark } from "@/components/icons";
+import { Wordmark } from "@/components/wordmark";
 import { SPRING_NAV } from "@/components/motion";
 import { TextRoll } from "@/components/ui";
 import { nav } from "@/lib/content";
@@ -40,8 +40,8 @@ export function Header() {
         transition={{ ...SPRING_NAV, delay: 0.3 }}
       >
         <nav className="flex h-[52px] items-center justify-between rounded-[3px] bg-white px-[26px] py-3 shadow-[0_0.6px_0.6px_-1.25px_rgba(0,0,0,0.09),0_2.29px_2.29px_-2.5px_rgba(0,0,0,0.08),0_10px_10px_-3.75px_rgba(0,0,0,0.03)]">
-          <Link href={routes.home} aria-label="Luxterra" className="flex w-[85px] items-start transition-opacity duration-300 hover:opacity-80">
-            <LogoMark className="h-[28px] w-[44px]" />
+          <Link href={routes.home} aria-label="HSantini Imóveis — início" className="flex items-center transition-opacity duration-300 hover:opacity-80">
+            <Wordmark className="text-[22px] text-ink" />
           </Link>
           <ul className="hidden items-center gap-8 md:flex">
             {nav.links.map((link) => (

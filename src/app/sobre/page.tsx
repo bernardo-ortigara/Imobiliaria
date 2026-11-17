@@ -8,10 +8,14 @@ import { Faq } from "@/components/sections/faq";
 import { ImageBand } from "@/components/sections/services";
 import { Stats } from "@/components/sections/stats";
 import { sobre } from "@/lib/content/sobre";
+import { routes } from "@/lib/routes";
+import { openGraphBase } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: sobre.metaTitle,
   description: sobre.metaDescription,
+  alternates: { canonical: routes.about },
+  openGraph: { ...openGraphBase, url: routes.about },
 };
 
 export default function SobrePage() {
@@ -22,7 +26,7 @@ export default function SobrePage() {
       <Stats />
       <SobreWhyUs />
       <ImageBand />
-      <Agents allLabel={sobre.agents.all} />
+      <Agents />
       <Faq />
       <Cta />
     </main>

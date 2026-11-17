@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { ArrowRightIcon } from "@/components/icons";
 import { EASE_HERO } from "@/components/motion";
 import { TextRoll } from "@/components/ui";
+import { WORDMARK } from "@/components/wordmark";
 import { hero } from "@/lib/content";
 import { routes } from "@/lib/routes";
 
@@ -51,16 +52,16 @@ export function Hero() {
         <div className="flex w-full flex-col items-start gap-8 lg:flex-row lg:items-end">
           <motion.p
             {...rise(0.3, 150, 0.9)}
-            aria-label="Luxterra"
+            aria-label="HSantini"
             className="min-w-0 flex-1 origin-bottom-left whitespace-nowrap text-white"
             style={{
-              fontSize: "calc((var(--content) - 352px) * 0.28366)",
+              fontSize: "calc((var(--content) - 352px) * 0.2297)",
               lineHeight: 0.76,
               letterSpacing: "-0.07em",
               fontVariationSettings: '"opsz" 14, "wght" 450',
             }}
           >
-            Luxterra
+            {WORDMARK}
           </motion.p>
 
           <MotionLink

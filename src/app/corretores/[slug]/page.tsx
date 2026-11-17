@@ -5,6 +5,8 @@ import { AgentProfile } from "@/components/pages/corretores/agent-profile";
 import { agents, getAgent } from "@/lib/data/agents";
 import { listingsByAgent } from "@/lib/data/listings";
 import { corretor, profiles } from "@/lib/content/corretor";
+import { routes } from "@/lib/routes";
+import { ogImage, openGraphBase } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -20,8 +22,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const agent = getAgent((await params).slug);
   if (!agent) return {};
   return {
-    title: `${agent.name} | Luxterra`,
+    title: agent.name,
     description: profiles[agent.slug].bio,
+    alternates: { canonical: routes.agent(agent.slug) },
+    openGraph: { ...openGraphBase, url: routes.agent(agent.slug), type: "profile", images: [{ url: ogImage(agent.image), alt: agent.name }] },
   };
 }
 

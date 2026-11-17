@@ -4,19 +4,18 @@ import type { Metadata } from "next";
 import { agents } from "@/lib/data/agents";
 import { cities } from "@/lib/data/cities";
 import { listings, statusLabel, type Listing } from "@/lib/data/listings";
-import { posts } from "@/lib/data/posts";
 import { routes } from "@/lib/routes";
 
 export const metadata: Metadata = {
-  title: "Imóveis | Luxterra",
+  title: "Imóveis",
   description:
-    "Descubra imóveis selecionados à venda e para alugar na Flórida e compare as opções com a ajuda da Luxterra.",
+    "Explore as melhores opções de imóveis para venda e locação em Caxias do Sul, selecionadas com a expertise e confiança da HSantini Imóveis.",
 };
 
 export const imoveis = {
   label: "Nossas propriedades",
   title: "Nossos imóveis em destaque",
-  text: "Descubra imóveis à venda e para alugar, selecionados para você comparar.",
+  text: "Explore as melhores opções para venda e locação, selecionadas com expertise e confiança.",
   searchPlaceholder: "Pesquisar...",
   filters: {
     all: "Todos",
@@ -84,13 +83,10 @@ export const searchIndex: SearchEntry[] = [
   ...agents.map((a) => ({
     title: a.name,
     href: routes.agent(a.slug),
-    keywords: [a.role, a.cities, titlesWhere((l) => l.agent === a.slug)].join(" "),
+    keywords: ["corretor", a.role, a.cities].join(" "),
   })),
-  ...posts.map((p) => ({ title: p.title, href: routes.post(p.slug), keywords: p.tag })),
-  { title: "Luxterra", href: routes.home, keywords: `imóveis Flórida ${titlesWhere(() => true)}` },
+  { title: "HSantini Imóveis", href: routes.home, keywords: `imóveis Caxias do Sul ${titlesWhere(() => true)}` },
   { title: "Nossos imóveis em destaque", href: routes.listings, keywords: "imóveis à venda para alugar" },
-  { title: "Corretores de confiança", href: routes.agents, keywords: "corretores equipe" },
-  { title: "Sua imobiliária de confiança na Flórida", href: routes.about, keywords: "sobre nós Luxterra" },
-  { title: "Vida e imóveis na Flórida", href: routes.blog, keywords: "blog artigos" },
-  { title: "Fale com nossa equipe", href: routes.contact, keywords: "contato e-mail telefone" },
+  { title: "Imobiliária de confiança em Caxias do Sul", href: routes.about, keywords: "sobre nós HSantini Imóveis" },
+  { title: "Fale com nossa equipe", href: routes.contact, keywords: "contato e-mail telefone whatsapp" },
 ];

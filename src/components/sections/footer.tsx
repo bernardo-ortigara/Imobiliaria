@@ -5,7 +5,9 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { GridLines, TextRoll } from "@/components/ui";
+import { WORDMARK } from "@/components/wordmark";
 import { footer } from "@/lib/content";
+import { whatsappLink } from "@/lib/site";
 
 function FooterLink({ children, href }: { children: string; href: string }) {
   const roll = <TextRoll text={children} direction="down" gap={18} className="t-18 text-white" />;
@@ -55,18 +57,18 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col items-center gap-8">
-            <p className="t-18 max-w-[320px] text-center text-white">{footer.newsletter}</p>
-            <form className="flex w-full max-w-[380px] items-center gap-[10px] border-b border-white/50 pb-3 pt-[10px]">
-              <input
-                type="email"
-                required
-                placeholder={footer.emailPlaceholder}
-                className="t-15 min-w-0 flex-1 bg-transparent text-white outline-none placeholder:text-white/50"
-              />
-              <button type="submit" className="t-15 cursor-pointer text-white">
-                {footer.subscribe}
-              </button>
-            </form>
+            <p className="t-18 max-w-[320px] text-center text-white">{footer.whatsappText}</p>
+            <a
+              href={whatsappLink(footer.whatsappMessage)}
+              target="_blank"
+              rel="noreferrer"
+              className="group flex w-full max-w-[380px] items-center gap-[10px] border-b border-white/50 pb-3 pt-[10px] transition-colors duration-300 hover:border-white"
+            >
+              <span className="t-15 min-w-0 flex-1 text-white/50 transition-colors duration-300 group-hover:text-white/80">
+                {footer.whatsappLabel}
+              </span>
+              <span className="t-15 text-white">{footer.whatsappAction}</span>
+            </a>
           </div>
 
           <div className="flex flex-col items-end gap-8 text-right">
@@ -96,7 +98,7 @@ export function Footer() {
           style={{
             opacity,
             y,
-            fontSize: "calc(var(--content) * 0.2729)",
+            fontSize: "calc(var(--content) * 0.221)",
             lineHeight: 0.889,
             letterSpacing: "-0.05em",
             fontVariationSettings: '"opsz" 14, "wght" 520',
@@ -105,7 +107,7 @@ export function Footer() {
         >
           {/* gradient on the inline box (taller than the line box), as in the original */}
           <span className="bg-[linear-gradient(181deg,rgb(255,255,255)_30%,rgba(17,17,18,0.91)_74%)] bg-clip-text text-transparent">
-            Luxterra
+            {WORDMARK}
           </span>
         </motion.p>
       </div>

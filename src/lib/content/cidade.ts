@@ -4,7 +4,7 @@ import type { CitySlug } from "@/lib/data/cities";
 export const cidade = {
   label: "Nossos imóveis",
   titlePrefix: "Imóveis em",
-  metaTitle: (name: string) => `Imóveis em ${name} | Luxterra`,
+  metaTitle: (name: string) => `Imóveis em ${name}`,
   intro: {
     tampa:
       "Viva o estilo de vida à beira-mar de Tampa, com bairros animados e boas oportunidades de investimento nas regiões mais desejadas.",

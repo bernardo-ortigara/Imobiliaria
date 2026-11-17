@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { contato } from "@/lib/content/contato";
+import { openWhatsApp } from "@/lib/site";
 
 type Status = "idle" | "loading" | "success";
 
@@ -33,8 +34,9 @@ function Spinner() {
 }
 
 /**
- * No backend: a valid submit only plays the Framer button states (Loading → "Obrigado!")
- * and clears the fields. Nothing is sent anywhere. Validation is the browser's native one, like the original.
+ * A valid submit opens WhatsApp with the enquiry written out (see `whatsappMessage` in the content file),
+ * then plays the Framer button states (Loading → "Obrigado!") and clears the fields.
+ * Validation is the browser's native one, like the original.
  */
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -46,6 +48,17 @@ export function ContactForm() {
     e.preventDefault();
     if (status === "loading") return;
     const form = e.currentTarget;
+    const data = new FormData(form);
+    // Synchronous with the submit so mobile browsers don't block the new tab.
+    openWhatsApp(
+      f.whatsappMessage({
+        enquiry: String(data.get("enquiry") ?? ""),
+        name: String(data.get("name") ?? ""),
+        phone: String(data.get("phone") ?? ""),
+        email: String(data.get("email") ?? ""),
+        message: String(data.get("message") ?? ""),
+      }),
+    );
     setStatus("loading");
     timer.current = setTimeout(() => {
       form.reset();

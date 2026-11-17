@@ -9,7 +9,5 @@ export const routes = {
   agent: (slug: string) => `/corretores/${slug}`,
   about: "/sobre",
   contact: "/contato",
-  blog: "/blog",
-  post: (slug: string) => `/blog/${slug}`,
   notFound: "/404",
 };

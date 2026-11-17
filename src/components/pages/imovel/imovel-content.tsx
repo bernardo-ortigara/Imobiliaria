@@ -9,6 +9,7 @@ import { EASE_HERO, EASE_SLIDE } from "@/components/motion";
 import type { Agent } from "@/lib/data/agents";
 import type { Listing } from "@/lib/data/listings";
 import { routes } from "@/lib/routes";
+import { openWhatsApp, siteUrl } from "@/lib/site";
 import { agentAvatarPosition, imovel, type ImovelDetail } from "@/lib/content/imovel";
 import { CaretDownIcon, LocationPinIcon, StarIcon } from "./icons";
 
@@ -113,7 +114,7 @@ export function ImovelContent({ listing, detail, agent }: Props) {
         </motion.div>
 
         <motion.aside {...appear(1)} className="w-full lg:sticky lg:top-10 lg:w-[410px] lg:shrink-0">
-          <ContactCard agent={agent} />
+          <ContactCard agent={agent} listing={listing} />
         </motion.aside>
       </div>
     </section>
@@ -164,10 +165,21 @@ function AccordionItem({ title, children }: { title: string; children: ReactNode
   );
 }
 
-function ContactCard({ agent }: { agent: Agent }) {
+function ContactCard({ agent, listing }: { agent: Agent; listing: Listing }) {
   const [sent, setSent] = useState(false);
+  // Opens WhatsApp with the listing and the visitor's details written out.
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    openWhatsApp(
+      imovel.form.whatsappMessage({
+        title: listing.title,
+        url: `${siteUrl}${routes.listing(listing.slug)}`,
+        name: String(data.get("name") ?? ""),
+        email: String(data.get("email") ?? ""),
+        message: String(data.get("message") ?? ""),
+      }),
+    );
     e.currentTarget.reset();
     setSent(true);
   };

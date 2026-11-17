@@ -6,6 +6,8 @@ import { RelatedListings } from "@/components/pages/imovel/related-listings";
 import { getImovelDetail, imovel } from "@/lib/content/imovel";
 import { getAgent } from "@/lib/data/agents";
 import { getListing, listings } from "@/lib/data/listings";
+import { routes } from "@/lib/routes";
+import { ogImage, openGraphBase } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -22,7 +24,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const listing = getListing(slug);
   const detail = getImovelDetail(slug);
   if (!listing || !detail) return {};
-  return { title: imovel.metaTitle(listing.title), description: detail.description };
+  const url = routes.listing(slug);
+  return {
+    title: imovel.metaTitle(listing.title),
+    description: detail.description,
+    alternates: { canonical: url },
+    openGraph: { ...openGraphBase, url, images: [{ url: ogImage(listing.image), alt: listing.title }] },
+  };
 }
 
 export default async function ImovelPage({ params }: Props) {

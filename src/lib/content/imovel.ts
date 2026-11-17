@@ -5,7 +5,7 @@ import { img } from "@/lib/data/img";
 // Template strings are shared; per-listing fields come from each original CMS page.
 
 export const imovel = {
-  metaTitle: (title: string) => `${title} | Luxterra`,
+  metaTitle: (title: string) => title,
   showAll: "Ver todas as imagens",
   priceLabel: "Preço do imóvel",
   details: { area: "Área (m²)", beds: "Quartos", baths: "Banheiros", type: "Tipo" },
@@ -27,18 +27,25 @@ export const imovel = {
     messagePlaceholder: "Sua mensagem aqui!!",
     submit: "Enviar",
     sent: "Mensagem enviada!",
+    /** Text pre-filled in WhatsApp when the listing form is sent. */
+    whatsappMessage: (d: { title: string; url: string; name: string; email: string; message: string }) =>
+      [
+        `Olá, Horácio! Tenho interesse no imóvel *${d.title}*.`,
+        d.url,
+        ``,
+        `*Nome:* ${d.name}`,
+        `*E-mail:* ${d.email}`,
+        d.message ? `\n${d.message}` : null,
+      ]
+        .filter((l) => l !== null)
+        .join("\n"),
   },
   related: { label: "Nossos imóveis", title: "Mais imóveis" },
 };
 
 /** Avatar crop used by the original contact card (object-position per agent photo). */
 export const agentAvatarPosition: Record<AgentSlug, string> = {
-  "emily-carter": "49.1% 31%",
-  "olivia-grant": "53.8% 30%",
-  "marcus-rivera": "48.6% 28.9%",
-  "isabella-torres": "52.5% 29.6%",
-  "daniel-brooks": "52.6% 30.1%",
-  "ethan-miles": "52.7% 29.4%",
+  "horacio-santini": "52.6% 30.1%",
 };
 
 export type ImovelDetail = {

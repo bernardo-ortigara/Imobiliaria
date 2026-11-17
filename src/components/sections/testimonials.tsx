@@ -54,7 +54,7 @@ export function Testimonials() {
   const pair = testimonials.items.slice(page * 2, page * 2 + 2);
 
   return (
-    <section className="bg-white px-wrap">
+    <section className="bg-white px-wrap pb-[100px]">
       <div className="rounded-[2px] bg-mist px-10 pb-20 pt-[60px]">
         <div className="flex flex-col gap-10 lg:flex-row">
           <Reveal className="flex flex-col justify-between gap-10 lg:w-[412px] lg:shrink-0">
