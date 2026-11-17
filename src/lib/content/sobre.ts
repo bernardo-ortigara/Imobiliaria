@@ -1,4 +1,4 @@
-import { about as homeAbout, img, why as homeWhy } from "@/lib/content";
+import { about as homeAbout, img } from "@/lib/content";
 
 export const sobre = {
   metaTitle: "Sobre nós",
@@ -46,11 +46,4 @@ export const sobre = {
       },
     ],
   },
-
-  why: {
-    ...homeWhy,
-    title: "Especialistas em Caxias do Sul",
-    image: img("yGHyJrYiKw24r72HPZtLTS4WePo.webp"),
-  },
-
 };

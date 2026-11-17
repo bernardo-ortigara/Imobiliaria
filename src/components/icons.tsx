@@ -68,30 +68,6 @@ export function BathIcon(props: IconProps) {
   );
 }
 
-export function RefreshIcon(props: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}><g><path d="M 2.5 0 L 0 2.25 L 2.5 4.5" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.6" stroke="currentColor" transform="translate(8.75 4.75)"></path><path d="M 0 4.5 L 2.5 2.25 L 0 0" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.6" stroke="currentColor" transform="translate(12.75 14.75)"></path><path d="M 0 0 L 3.5 0 C 6.814 0 9.5 2.686 9.5 6 L 9.5 6.25" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.6" stroke="currentColor" transform="translate(9.75 7)"></path><path d="M 9.5 6.25 L 6 6.25 C 2.686 6.25 0 3.564 0 0.25 L 0 0" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.6" stroke="currentColor" transform="translate(4.75 10.75)"></path></g></svg>
-  );
-}
-
-export function BuildingIcon(props: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}><g><path d="M 0 2 C 0 0.895 0.895 0 2 0 L 10.5 0 C 11.605 0 12.5 0.895 12.5 2 L 12.5 14.5 L 0 14.5 Z" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.6" stroke="currentColor" transform="translate(5.75 4.75)"></path><path d="M 14.5 0 L 0 0" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.6" stroke="currentColor" transform="translate(4.75 19.25)"></path><path d="M 0 2 C 0 0.895 0.895 0 2 0 L 2.5 0 C 3.605 0 4.5 0.895 4.5 2 L 4.5 5.5 L 0 5.5 Z" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.6" stroke="currentColor" transform="translate(9.75 13.75)"></path><path d="M 1 0.5 C 1 0.776 0.776 1 0.5 1 C 0.224 1 0 0.776 0 0.5 C 0 0.224 0.224 0 0.5 0 C 0.776 0 1 0.224 1 0.5 Z" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" stroke="currentColor" transform="translate(9.5 9.5)"></path><path d="M 1 0.5 C 1 0.776 0.776 1 0.5 1 C 0.224 1 0 0.776 0 0.5 C 0 0.224 0.224 0 0.5 0 C 0.776 0 1 0.224 1 0.5 Z" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" stroke="currentColor" transform="translate(13.5 9.5)"></path></g></svg>
-  );
-}
-
-export function BriefcaseIcon(props: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}><g><path d="M 0 2 C 0 0.895 0.895 0 2 0 L 12.5 0 C 13.605 0 14.5 0.895 14.5 2 L 14.5 9.5 C 14.5 10.605 13.605 11.5 12.5 11.5 L 2 11.5 C 0.895 11.5 0 10.605 0 9.5 Z" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.6" stroke="currentColor" transform="translate(4.75 7.75)"></path><path d="M 0 2.75 L 0 2 C 0 0.895 0.895 0 2 0 L 4.5 0 C 5.605 0 6.5 0.895 6.5 2 L 6.5 2.75" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.6" stroke="currentColor" transform="translate(8.75 4.75)"></path><path d="M 0 0 L 14 0" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.6" stroke="currentColor" transform="translate(5 13.25)"></path><path d="M 0 0 L 0 2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.6" stroke="currentColor" transform="translate(8.75 11.75)"></path><path d="M 0 0 L 0 2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.6" stroke="currentColor" transform="translate(15.25 11.75)"></path></g></svg>
-  );
-}
-
-export function UsersIcon(props: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}><g><path d="M 0.914 5.25 L 8.35 5.25 C 8.915 5.25 9.359 4.782 9.247 4.229 C 8.936 2.701 7.922 0 4.632 0 C 1.342 0 0.328 2.701 0.018 4.229 C -0.095 4.782 0.349 5.25 0.914 5.25 Z" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.6" stroke="currentColor" transform="translate(4.868 14)"></path><path d="M 0 0 C 2.079 0 2.93 2.148 3.274 3.696 C 3.459 4.532 2.783 5.25 1.927 5.25 L 1 5.25" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.6" stroke="currentColor" transform="translate(15.75 14)"></path><path d="M 0 2.75 C 0 1.231 1.231 0 2.75 0 C 4.269 0 5.5 1.231 5.5 2.75 C 5.5 4.269 4.269 5.5 2.75 5.5 C 1.231 5.5 0 4.269 0 2.75 Z" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.6" stroke="currentColor" transform="translate(6.75 4.75)"></path><path d="M 0 5.5 C 1.519 5.5 2.5 4.269 2.5 2.75 C 2.5 1.231 1.519 0 0 0" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.6" stroke="currentColor" transform="translate(14.75 4.75)"></path></g></svg>
-  );
-}
-
 export function LinkedinIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}><g><path d="M 0.75 18 C 0.336 18 0 17.664 0 17.25 L 0 0.75 C 0 0.336 0.336 0 0.75 0 L 17.25 0 C 17.664 0 18 0.336 18 0.75 L 18 17.25 C 18 17.664 17.664 18 17.25 18 Z" fillOpacity="0" fill="currentColor" transform="translate(3 3)" strokeWidth="1"></path><path d="M 0.75 18 C 0.336 18 0 17.664 0 17.25 L 0 0.75 C 0 0.336 0.336 0 0.75 0 L 17.25 0 C 17.664 0 18 0.336 18 0.75 L 18 17.25 C 18 17.664 17.664 18 17.25 18 Z" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" stroke="currentColor" transform="translate(3 3)"></path><path d="M 0 0 L 0 6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" stroke="currentColor" transform="translate(11.25 10.5)"></path><path d="M 0 0 L 0 6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" stroke="currentColor" transform="translate(8.25 10.5)"></path><path d="M 0 2.625 C 0 1.175 1.175 0 2.625 0 C 4.075 0 5.25 1.175 5.25 2.625 L 5.25 6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" stroke="currentColor" transform="translate(11.25 10.5)"></path><path d="M 0 1.125 C 0 0.504 0.504 0 1.125 0 C 1.746 0 2.25 0.504 2.25 1.125 C 2.25 1.746 1.746 2.25 1.125 2.25 C 0.504 2.25 0 1.746 0 1.125 Z" fill="currentColor" transform="translate(7.125 6.75)" strokeWidth="1"></path></g></svg>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { SobreHero } from "@/components/pages/sobre/hero";
 import { Mission } from "@/components/pages/sobre/mission";
-import { SobreWhyUs } from "@/components/pages/sobre/why-us";
 import { Agents } from "@/components/sections/agents";
 import { Cta } from "@/components/sections/cta";
 import { Faq } from "@/components/sections/faq";
@@ -24,7 +23,6 @@ export default function SobrePage() {
       <SobreHero />
       <Mission />
       <Stats />
-      <SobreWhyUs />
       <ImageBand />
       <Agents />
       <Faq />

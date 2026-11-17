@@ -73,22 +73,6 @@ export const listings = {
   loadMore: "Carregar mais",
 };
 
-export const why = {
-  label: "Por que nós",
-  title: "Por que escolher a HSantini?",
-  cardLabel: "Corretor independente",
-  cardTitle: "Seu sonho imobiliário, nossa prioridade",
-  cardText:
-    "Serviço personalizado, transparência total e conhecimento do mercado local guiam cada decisão. Acompanhamos você do primeiro contato à escritura.",
-  image: img("RaxVOpZHxB9OK3LWaCEa2t0ICcU.webp"),
-  stats: [
-    { icon: "refresh", value: "8+", label: "Anos de experiência", text: "Serviço personalizado: cada cliente recebe atenção dedicada do início ao fim." },
-    { icon: "building", value: "100+", label: "Imóveis avaliados", text: "Expertise local: conhecimento aprofundado do mercado de Caxias do Sul e região." },
-    { icon: "briefcase", value: "100%", label: "Segurança jurídica", text: "Transparência total: cuidamos da documentação para uma transação sem surpresas." },
-    { icon: "users", value: "99%", label: "Clientes satisfeitos", text: "Profissionalismo e dedicação que superam as expectativas de quem compra e vende." },
-  ],
-} as const;
-
 export const services = {
   label: "Nossos serviços",
   title: "O que oferecemos",
