@@ -1,4 +1,3 @@
-// pt-BR copy for the 404 page (original: luxterra.framer.website/404)
 export const notFoundPage = {
   metaTitle: "Erro 404",
   title: "Erro 404!",

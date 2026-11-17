@@ -10,7 +10,6 @@ import {
 } from "motion/react";
 import { Fragment, useEffect, useRef, type ReactNode } from "react";
 
-// Easings/springs measured from the original Framer site
 export const EASE_REVEAL = [0.33, 1, 0.68, 1] as const;
 export const EASE_HERO = [0.68, 0, 0, 0.99] as const;
 export const EASE_SLIDE = [0.44, 0, 0.56, 1] as const;
@@ -35,7 +34,6 @@ type RevealProps = {
   amount?: number;
 };
 
-/** Fades (and optionally slides) its content in the first time it enters the viewport. */
 export function Reveal({ children, className, kind = "fade", delay = 0, x = 0, y = 0, amount = 0.2 }: RevealProps) {
   return (
     <motion.div
@@ -50,7 +48,6 @@ export function Reveal({ children, className, kind = "fade", delay = 0, x = 0, y
   );
 }
 
-/** Character-by-character reveal used on the testimonial quotes. */
 export function CharReveal({ text, className }: { text: string; className?: string }) {
   const ref = useRef<HTMLParagraphElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.3 });
@@ -84,13 +81,11 @@ export function CharReveal({ text, className }: { text: string; className?: stri
   );
 }
 
-/** Counts from 0 up to `value` once visible, keeping the suffix (e.g. "+", "k", "%"). */
 export function Counter({ value, suffix, className }: { value: number; suffix: string; className?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.5 });
   const count = useMotionValue(0);
   const label = useTransform(count, (v) => Math.round(v));
-  // word suffixes ("mil") get normal tracking; the -9px number tracking would crush them
   const suffixEl = /^\s/.test(suffix) ? <span className="tracking-[-3px]">{suffix}</span> : suffix;
 
   useEffect(() => {
@@ -101,7 +96,6 @@ export function Counter({ value, suffix, className }: { value: number; suffix: s
 
   return (
     <span className="relative inline-block">
-      {/* invisible final value reserves the width so the layout never shifts */}
       <span className={`${className} invisible block`}>
         {value}
         {suffixEl}

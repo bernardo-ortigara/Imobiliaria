@@ -2,9 +2,6 @@ import type { SVGProps } from "react";
 
 type IconProps = SVGProps<SVGSVGElement>;
 
-// SVGs extracted from the original /listings/<slug> page (stroke widths resolved from computed styles).
-
-/** location pin — 18x18, default color rgba(0, 0, 0, 0.7) */
 export function LocationPinIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
@@ -15,7 +12,6 @@ export function LocationPinIcon(props: IconProps) {
   );
 }
 
-/** Phosphor "Star" (fill) — 15x15 in the rating row */
 export function StarIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" {...props}>
@@ -24,7 +20,6 @@ export function StarIcon(props: IconProps) {
   );
 }
 
-/** Phosphor "CaretDown" (regular) — 24x24 accordion toggle; flipped when open */
 export function CaretDownIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" {...props}>

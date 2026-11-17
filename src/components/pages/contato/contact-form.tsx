@@ -8,7 +8,6 @@ type Status = "idle" | "loading" | "success";
 
 const f = contato.form;
 
-// Framer form input: white, 2px radius, 15px/1.2em Inter; focus = 1px inset border rgba(0,0,0,.62) (textarea .46)
 const field = "relative flex items-center rounded-[2px] bg-white";
 const focus = "focus-within:shadow-[inset_0_0_0_1px_rgba(0,0,0,0.62)]";
 const input =
@@ -23,7 +22,6 @@ function Label({ text, children, className = "" }: { text: string; children: Rea
   );
 }
 
-/** Rotating 20px ring, as in the Framer "Loading" button variant. */
 function Spinner() {
   return (
     <span
@@ -33,11 +31,6 @@ function Spinner() {
   );
 }
 
-/**
- * A valid submit opens WhatsApp with the enquiry written out (see `whatsappMessage` in the content file),
- * then plays the Framer button states (Loading → "Obrigado!") and clears the fields.
- * Validation is the browser's native one, like the original.
- */
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -49,7 +42,6 @@ export function ContactForm() {
     if (status === "loading") return;
     const form = e.currentTarget;
     const data = new FormData(form);
-    // Synchronous with the submit so mobile browsers don't block the new tab.
     openWhatsApp(
       f.whatsappMessage({
         enquiry: String(data.get("enquiry") ?? ""),

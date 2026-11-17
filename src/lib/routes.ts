@@ -1,5 +1,3 @@
-// pt-BR routes. Slugs are kept identical to the original site.
-
 export const routes = {
   home: "/",
   listings: "/imoveis",

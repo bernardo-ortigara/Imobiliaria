@@ -5,7 +5,6 @@ import { sobre } from "@/lib/content/sobre";
 
 const { mission } = sobre;
 
-/** "Our mission" block of the original /about: heading row + three numbered cards. */
 export function Mission() {
   return (
     <section className="relative overflow-hidden bg-white px-wrap pb-[120px] pt-[140px]">

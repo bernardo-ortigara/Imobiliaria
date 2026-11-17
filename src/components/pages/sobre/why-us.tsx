@@ -1,7 +1,5 @@
 "use client";
 
-// Copy of sections/why-us.tsx: on /about the title fits one line, and the photo, its framing
-// (633x758, 22px above the card) and the overlay gradient differ from the Home.
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";

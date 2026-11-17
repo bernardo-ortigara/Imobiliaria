@@ -1,5 +1,3 @@
-// Copy for /sobre (original: /about). Blocks repeated from the Home reuse `@/lib/content`.
-
 import { about as homeAbout, img, why as homeWhy } from "@/lib/content";
 
 export const sobre = {
@@ -8,10 +6,9 @@ export const sobre = {
     "Serviço imobiliário completo em Caxias do Sul, com experiência, transparência e atendimento personalizado em cada etapa.",
 
   hero: {
-    label: homeAbout.label, // "Sobre nós"
+    label: homeAbout.label,
     title: "Imobiliária de confiança em Caxias do Sul",
     text: "Vamos além da intermediação e guiamos você da avaliação precisa à consultoria especializada.",
-    // Ticker images, in the original order (odd = 400px tall, even = 380px tall)
     gallery: [
       { src: img("MyrgI1vs894Rp9yfxsOSyZRcUM.webp"), position: "50% 50%", tall: true },
       { src: img("P0IKKWT3PjsidbfZPLGFRba6stU.webp"), position: "0% 50%", tall: false },
@@ -50,8 +47,6 @@ export const sobre = {
     ],
   },
 
-  // Same block as the Home "Por que nós", with a one-line title and another photo.
-  // The original card title adds "Florida"; in pt-BR that breaks into 3 lines, so the Home title is kept.
   why: {
     ...homeWhy,
     title: "Especialistas em Caxias do Sul",

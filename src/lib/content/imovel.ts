@@ -1,8 +1,3 @@
-import type { AgentSlug } from "@/lib/data/agents";
-
-// Copy for /imoveis/[slug] (original: /listings/<slug>).
-// Template strings are shared; per-listing fields come from each original CMS page.
-
 export const imovel = {
   metaTitle: (title: string) => title,
   showAll: "Ver todas as imagens",
@@ -26,7 +21,6 @@ export const imovel = {
     messagePlaceholder: "Sua mensagem aqui!!",
     submit: "Enviar",
     sent: "Mensagem enviada!",
-    /** Text pre-filled in WhatsApp when the listing form is sent. */
     whatsappMessage: (d: { title: string; url: string; name: string; email: string; message: string }) =>
       [
         `Olá, Horácio! Tenho interesse no imóvel *${d.title}*.`,
@@ -42,24 +36,15 @@ export const imovel = {
   related: { label: "Nossos imóveis", title: "Mais imóveis" },
 };
 
-/** Avatar crop used by the original contact card (object-position per agent photo). */
-export const agentAvatarPosition: Record<AgentSlug, string> = {
-  "horacio-santini": "52.6% 30.1%",
-};
-
 export type ImovelDetail = {
-  /** Extra photos after the listing cover image (the header mosaic needs 2+). */
   photos: string[];
   description: string;
   details: string[];
   location?: string;
   features?: string[];
-  /** Google Maps search for the embed; omitted when the address isn't public. */
   mapQuery?: string;
 };
 
-// From the old site (hsantiniimoveis.com.br/imoveis-disponiveis). The cobertura's numbers and
-// "semimobiliado" come from its flyer photo; nothing beyond what was published is added.
 export const imovelDetails: Record<string, ImovelDetail> = {
   "cobertura-duplex-madureira": {
     photos: [],

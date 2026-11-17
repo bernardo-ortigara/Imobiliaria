@@ -1,5 +1,3 @@
-// Copy for the /imoveis page (original: luxterra.framer.website/listings).
-
 import type { Metadata } from "next";
 import { agents } from "@/lib/data/agents";
 import { cities } from "@/lib/data/cities";
@@ -23,7 +21,6 @@ export const imoveis = {
     type: "Tipo",
     city: "Cidade",
   },
-  /** Filter options, from the listings themselves. */
   types: [...new Set(listings.map((l) => l.type))],
   empty: "Nenhum imóvel encontrado",
   loadMore: "Carregar mais",
@@ -35,10 +32,8 @@ export const imoveis = {
   },
 };
 
-// Grid order = data order (same as the old site).
 export const orderedListings = listings;
 
-// Only statuses that have listings (e.g. no "Para alugar" option while nothing is for rent).
 export const statusOptions = (Object.keys(statusLabel) as (keyof typeof statusLabel)[])
   .filter((value) => listings.some((l) => l.status === value))
   .map((value) => ({
@@ -47,7 +42,6 @@ export const statusOptions = (Object.keys(statusLabel) as (keyof typeof statusLa
 }));
 export const cityOptions = cities.map((c) => ({ value: c.slug, label: c.name }));
 
-/** Site-wide search index (the original uses Framer's site search modal). */
 export type SearchEntry = { title: string; href: string; keywords: string };
 
 const titlesWhere = (pred: (l: Listing) => boolean) => listings.filter(pred).map((l) => l.title).join(" ");

@@ -16,7 +16,6 @@ export function Header() {
   const lenis = useLenis();
   const pathname = usePathname();
 
-  // Close the drawer after any navigation (e.g. browser back).
   const [lastPath, setLastPath] = useState(pathname);
   if (pathname !== lastPath) {
     setLastPath(pathname);

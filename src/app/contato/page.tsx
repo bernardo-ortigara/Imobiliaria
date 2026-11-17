@@ -17,7 +17,7 @@ export default function ContatoPage() {
   return (
     <main>
       <ContactHero />
-      <ImageBand />
+      <ImageBand image={contato.band} />
       <Agents />
     </main>
   );

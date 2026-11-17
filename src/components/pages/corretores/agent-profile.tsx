@@ -14,7 +14,6 @@ import { EnvelopeIcon, InfoIcon, InstagramLogoIcon, MapPinIcon, PhoneIcon } from
 
 const EASE_BTN = "ease-[cubic-bezier(0.22,1,0.36,1)]";
 
-/** /corretores/[slug] hero: name card with round photo, socials, contact card and bio. */
 export function AgentProfile({ agent, profile }: { agent: Agent; profile: Profile }) {
   return (
     <section className="relative overflow-hidden bg-white px-wrap pb-[110px] pt-20">
@@ -26,11 +25,11 @@ export function AgentProfile({ agent, profile }: { agent: Agent; profile: Profil
             <p className="t-19 text-black/62">{agent.role}</p>
             <div className="absolute left-10 top-[198px] size-[180px] overflow-hidden rounded-full">
               <Image
-                src={agent.image}
+                src={agent.avatar}
                 alt={agent.name}
                 fill
                 sizes="180px"
-                className="object-cover object-[52.6%_30.1%]"
+                className="object-cover"
               />
             </div>
           </div>
@@ -109,7 +108,6 @@ function TextBlock({ title, paragraphs }: { title: string; paragraphs: string[] 
   );
 }
 
-/** Dark "Fale conosco" button: the white square behind the arrow grows to fill it on hover and the label rolls to dark. */
 function ContactButton() {
   return (
     <Link

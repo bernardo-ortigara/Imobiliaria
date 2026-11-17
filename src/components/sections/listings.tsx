@@ -10,7 +10,6 @@ import { rentListings, saleListings, statusLabel } from "@/lib/data/listings";
 
 const PAGE = 6;
 
-// The sale/rent switch only shows when both have listings.
 const TABS = (["sale", "rent"] as const).filter((key) => (key === "sale" ? saleListings : rentListings).length > 0);
 
 export function Listings() {

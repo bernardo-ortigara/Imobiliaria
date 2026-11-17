@@ -2,7 +2,6 @@ import { ArrowButton, GridLines } from "@/components/ui";
 import { notFoundPage } from "@/lib/content/404";
 import { routes } from "@/lib/routes";
 
-/** Static on the original: no appear/scroll animations, only the button hover. */
 export function NotFoundHero() {
   const t = notFoundPage;
   return (

@@ -1,6 +1,5 @@
 import type { SVGProps } from "react";
 
-// Phosphor "MagnifyingGlass" (bold), as used by the original search trigger and modal.
 export function SearchIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden {...props}>
@@ -9,7 +8,6 @@ export function SearchIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-// Phosphor "XCircle" (fill), the clear button of the search modal.
 export function ClearIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden {...props}>
@@ -18,7 +16,6 @@ export function ClearIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-// Framer form select chevron (16x16, stroke 1.5).
 export function ChevronIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden {...props}>

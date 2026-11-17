@@ -16,7 +16,6 @@ html {
   background: #ffffff;
 }
 
-/* Layout: content is max 1356px, centered, with a 32px minimum gutter (as on the original site) */
 :root {
   --gutter-min: 32px;
   --content: min(calc(100vw - var(--gutter-min) * 2), 1356px);
@@ -42,7 +41,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Type scale extracted from the original Framer site (desktop) */
 @utility t-82 {
   font-size: 82px;
   line-height: 80.36px;
@@ -120,7 +118,6 @@ body {
   font-feature-settings: "cv05", "cv06", "cv07", "cv08", "cv10", "cv11", "cv12", "cv13", "ss06", "ss07", "tnum";
 }
 
-/* Hover "text roll" used by nav links and buttons */
 .roll {
   position: relative;
   display: block;
@@ -151,9 +148,7 @@ body {
   transform: translateY(calc(100% + var(--roll-gap)));
 }
 
-/* Image zoom on hover */
 .zoom-img {
-  /* Tailwind v4 `scale-*` uses the `scale` property, not `transform` */
   transition:
     transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
     scale 0.6s cubic-bezier(0.22, 1, 0.36, 1);

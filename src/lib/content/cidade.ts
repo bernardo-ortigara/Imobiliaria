@@ -1,6 +1,5 @@
 import type { CitySlug } from "@/lib/data/cities";
 
-// Copy for /cidades/[slug] (original: /cities/<slug>). Title lines mirror the original "Tampa / listings".
 export const cidade = {
   label: "Nossos imóveis",
   titlePrefix: "Imóveis em",

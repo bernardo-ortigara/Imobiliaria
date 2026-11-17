@@ -4,7 +4,6 @@ import { AreaIcon, BathIcon, BedIcon, CarIcon } from "@/components/icons";
 import { priceOnRequest, statusLabel, type Listing } from "@/lib/data/listings";
 import { routes } from "@/lib/routes";
 
-/** Listing card (image + chips, title/address/price, specs that are set). Hover: image zoom 1.02. */
 export function ListingCard({ item }: { item: Listing }) {
   const href = routes.listing(item.slug);
   return (

@@ -10,10 +10,9 @@ import type { Agent } from "@/lib/data/agents";
 import { priceOnRequest, type Listing } from "@/lib/data/listings";
 import { routes } from "@/lib/routes";
 import { openWhatsApp, siteUrl } from "@/lib/site";
-import { agentAvatarPosition, imovel, type ImovelDetail } from "@/lib/content/imovel";
+import { imovel, type ImovelDetail } from "@/lib/content/imovel";
 import { CaretDownIcon, LocationPinIcon, StarIcon } from "./icons";
 
-// On-load appear (Framer appear JSON): left column at 0.9s, contact card at 1.0s.
 const appear = (delay: number) => ({
   initial: { opacity: 0, scale: 0.9, y: 120 },
   animate: { opacity: 1, scale: 1, y: 0 },
@@ -23,13 +22,11 @@ const appear = (delay: number) => ({
 const T28 = "text-[28px] leading-[34.16px] tracking-[-1.12px] text-ink [font-variation-settings:'opsz'_14,'wght'_420]";
 const T14 = "text-[14px] leading-[15px] tracking-[-0.14px] text-ink [font-variation-settings:'opsz'_14,'wght'_440]";
 
-/** "63 m²" → "63", "2,5 Banheiros" → "2,5" */
 const firstWord = (s: string) => s.split(" ")[0];
 
 type Props = { listing: Listing; detail: ImovelDetail; agent: Agent };
 
 export function ImovelContent({ listing, detail, agent }: Props) {
-  // Only the specs the listing has.
   const specs: [string, string | undefined, typeof AreaIcon][] = [
     [imovel.details.area, listing.area, AreaIcon],
     [imovel.details.beds, listing.beds, BedIcon],
@@ -46,7 +43,6 @@ export function ImovelContent({ listing, detail, agent }: Props) {
     <section className="bg-white px-8 pb-[120px] pt-[90px]">
       <div className="mx-auto flex max-w-[1170px] flex-col items-start gap-20 lg:flex-row">
         <motion.div {...appear(0.9)} className="flex w-full min-w-0 flex-col gap-10 lg:flex-1">
-          {/* Title + price + stats */}
           <div className="flex flex-col gap-10">
             <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-end sm:gap-8">
               <div className="flex min-w-0 flex-1 flex-col gap-[6px]">
@@ -74,13 +70,11 @@ export function ImovelContent({ listing, detail, agent }: Props) {
             </div>
           </div>
 
-          {/* Description */}
           <div className="flex flex-col gap-4">
             <h2 className="t-19 text-ink">{imovel.description}</h2>
             <p className="t-18 text-black/70">{detail.description}</p>
           </div>
 
-          {/* Accordion */}
           <div className="flex flex-col">
             <AccordionItem title={imovel.accordion.details}>
               <Bullets items={detail.details} />
@@ -97,7 +91,6 @@ export function ImovelContent({ listing, detail, agent }: Props) {
             )}
           </div>
 
-          {/* Gallery ("Ver todas as imagens" scrolls here), only when there's more than the cover. */}
           {photos.length > 1 && (
             <div id="images" className="flex flex-col gap-7 pb-[50px] pt-5 shadow-[inset_0_-1px_0_var(--color-line-soft)]">
               <h2 className={T28}>{imovel.gallery}</h2>
@@ -111,7 +104,6 @@ export function ImovelContent({ listing, detail, agent }: Props) {
             </div>
           )}
 
-          {/* Map, only when the location is public. */}
           {detail.mapQuery && (
             <div className="flex flex-col gap-7">
               <h2 className={T28}>{imovel.map}</h2>
@@ -147,7 +139,6 @@ function Bullets({ items }: { items: string[] }) {
   );
 }
 
-/** Independent toggles (several can be open). Answer expands height + fades in ~0.25s; caret flips. */
 function AccordionItem({ title, children }: { title: string; children: ReactNode }) {
   const [open, setOpen] = useState(false);
   return (
@@ -181,7 +172,6 @@ function AccordionItem({ title, children }: { title: string; children: ReactNode
 
 function ContactCard({ agent, listing }: { agent: Agent; listing: Listing }) {
   const [sent, setSent] = useState(false);
-  // Opens WhatsApp with the listing and the visitor's details written out.
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -204,12 +194,11 @@ function ContactCard({ agent, listing }: { agent: Agent; listing: Listing }) {
       <Link href={routes.agent(agent.slug)} className="flex items-center gap-5">
         <span className="relative size-[60px] shrink-0 overflow-hidden rounded-full">
           <Image
-            src={agent.image}
+            src={agent.avatar}
             alt={agent.name}
             fill
             sizes="60px"
             className="object-cover"
-            style={{ objectPosition: agentAvatarPosition[agent.slug] }}
           />
         </span>
         <span className="flex min-w-0 flex-1 flex-col gap-1">

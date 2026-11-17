@@ -26,7 +26,6 @@ function search(query: string): SearchEntry[] {
 
 const SANS = 'var(--font-inter), Inter, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif';
 
-/** Site search modal (recreates Framer's built-in search: dark backdrop, 500px white panel at 195px from the top). */
 export function SearchModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const lenis = useLenis();
 

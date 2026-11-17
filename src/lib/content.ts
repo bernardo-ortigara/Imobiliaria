@@ -1,5 +1,3 @@
-// All copy for the home page (pt-BR). Shared CMS-like data lives in ./data/*.
-
 import { broker } from "./data/agents";
 import { img } from "./data/img";
 import { routes } from "./routes";
@@ -36,7 +34,7 @@ export const hero = {
   cardEyebrow: "Vamos te ajudar",
   cardTitle: "Fale com um corretor",
   image: img("I5TK0E5MrO84hanvd42um4tv0.webp"),
-  avatar: img("pFWmjh1MmUlHUjB5a37IqhjHfDc.webp"),
+  avatar: broker.avatar,
 };
 
 export const about = {
@@ -63,7 +61,6 @@ export const stats = {
   title: "Experiência que gera confiança",
   image: img("Jw214vO1mG6pgbDZntulBn5w9uA.jpg"),
   items: [
-    // Same figures as the old site (hsantiniimoveis.com.br).
     { value: 8, suffix: "+", label: "Anos de experiência" },
     { value: 100, suffix: "+", label: "Imóveis avaliados" },
     { value: 99, suffix: "%", label: "Clientes satisfeitos" },
@@ -110,7 +107,6 @@ export const agents = {
   cta: "Ver perfil",
 };
 
-// Verbatim from the old site (hsantiniimoveis.com.br), which shows only quote + name.
 export const testimonials = {
   label: "Depoimentos",
   title: "O que nossos clientes dizem",
@@ -156,7 +152,7 @@ export const cta = {
   text: "Entre em contato e fale com um especialista",
   button: "Fale conosco",
   image: img("nMjqmhT2Oe3KiMkktCf7hsSVQ.jpg"),
-  avatar: img("pFWmjh1MmUlHUjB5a37IqhjHfDc.webp"),
+  avatar: broker.avatar,
 };
 
 export const footer = {

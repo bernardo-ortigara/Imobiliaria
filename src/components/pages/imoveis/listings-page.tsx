@@ -9,7 +9,6 @@ import { cityOptions, imoveis, orderedListings, statusOptions } from "@/lib/cont
 import { ChevronIcon, SearchIcon } from "./icons";
 import { SearchModal } from "./search-modal";
 
-// On-load "appear" animations measured on the original /listings page.
 const tween = (delay: number): Transition => ({ duration: 1, ease: EASE_HERO, delay });
 const GRID_SPRING: Transition = { type: "spring", stiffness: 70, damping: 27, mass: 0.3, delay: 0.4 };
 
@@ -22,7 +21,6 @@ const ALL = "";
 
 export function ListingsPage() {
   const [filters, setFilters] = useState<Filters>({ status: ALL, type: ALL, city: ALL });
-  // Like Framer's CMS "Load more", the page count survives filter changes.
   const [limit, setLimit] = useState(imoveis.pageSize);
   const [searchOpen, setSearchOpen] = useState(false);
   const closeSearch = useCallback(() => setSearchOpen(false), []);
@@ -52,7 +50,6 @@ export function ListingsPage() {
       </motion.div>
 
       <div className="relative flex flex-col items-end gap-[70px] pb-[130px] pt-[60px]">
-        {/* Heading: clipped box, so the rising label/title appear from below its edge */}
         <div className="flex w-full flex-col items-center gap-4 overflow-clip pt-[120px]">
           <div className="flex w-full flex-col items-center gap-2">
             <div className="flex w-full items-center gap-4 overflow-clip">
@@ -94,7 +91,6 @@ export function ListingsPage() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={tween(0.8)}
         >
-          {/* Toolbar: search trigger + filters */}
           <div className="flex w-full flex-col gap-6 md:flex-row md:items-end md:gap-[100px]">
             <button
               type="button"

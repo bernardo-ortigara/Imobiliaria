@@ -2,9 +2,6 @@ import type { SVGProps } from "react";
 
 type IconProps = SVGProps<SVGSVGElement>;
 
-// Phosphor icons extracted from /agents/<slug> on the original site (default color rgb(17, 17, 18)).
-
-/** info (light) — 20x20 */
 export function InfoIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" {...props}>
@@ -13,7 +10,6 @@ export function InfoIcon(props: IconProps) {
   );
 }
 
-/** map-pin (light) — 20x20 */
 export function MapPinIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" {...props}>
@@ -22,7 +18,6 @@ export function MapPinIcon(props: IconProps) {
   );
 }
 
-/** phone (light) — 20x20 */
 export function PhoneIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" {...props}>
@@ -31,7 +26,6 @@ export function PhoneIcon(props: IconProps) {
   );
 }
 
-/** envelope (light) — 20x20 */
 export function EnvelopeIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" {...props}>
@@ -40,7 +34,6 @@ export function EnvelopeIcon(props: IconProps) {
   );
 }
 
-/** instagram-logo (regular) — 24x24 */
 export function InstagramLogoIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" {...props}>

@@ -7,7 +7,6 @@ import { EASE_HERO } from "@/components/motion";
 
 type Props = {
   title: string;
-  /** Cover first. 3+ photos → mosaic; fewer → the cover alone. */
   images: string[];
   showAll: string;
 };
@@ -18,11 +17,6 @@ const appear = {
   transition: { duration: 1, ease: EASE_HERO, delay: 0.8 },
 } as const;
 
-/**
- * Top photos. Appears on load: fade + scale 0.9 + rise 120px, 1s, delay 0.8s.
- * - 3+ photos: mosaic (1 large + 2 stacked) with "Ver todas as imagens".
- * - Otherwise: the whole cover (often a portrait phone photo) over a blurred copy of itself.
- */
 export function ImovelHero({ title, images, showAll }: Props) {
   if (images.length < 3) return <SingleHero title={title} src={images[0]} />;
   return <MosaicHero title={title} images={images} showAll={showAll} />;

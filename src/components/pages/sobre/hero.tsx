@@ -8,14 +8,12 @@ import { sobre } from "@/lib/content/sobre";
 
 const { hero } = sobre;
 
-// Load sequence measured on the original (Framer "appear" JSON): 1s tween, ease [0.68,0,0,0.99].
 const rise = (delay: number, y: number, scale: number): MotionProps => ({
   initial: { opacity: 0, y, scale },
   animate: { opacity: 1, y: 0, scale: 1 },
   transition: { duration: 1, ease: EASE_HERO, delay },
 });
 
-// Ticker: 4 images of 360px + 40px gap = one 1600px loop, moving left at 100px/s.
 const LOOP = 1600;
 const SPEED = 100;
 const COPIES = 4;

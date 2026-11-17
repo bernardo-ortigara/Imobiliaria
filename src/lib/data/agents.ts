@@ -7,15 +7,13 @@ export type Agent = {
   slug: AgentSlug;
   name: string;
   role: string;
-  /** Display string. */
   cities: string;
   cityTags: CitySlug[];
   image: string;
+  avatar: string;
   instagram: string;
 };
 
-// HSantini Imóveis has a single broker: the owner, Horácio Santini.
-// Photo is a placeholder from the template until the real one is provided.
 export const agents: Agent[] = [
   {
     slug: "horacio-santini",
@@ -23,12 +21,12 @@ export const agents: Agent[] = [
     role: "Corretor e fundador",
     cities: "Caxias do Sul e região",
     cityTags: [],
-    image: img("WuPd0nCS70RQtJOJZrJXdiEKe2A.webp"),
+    image: img("horacio-santini.webp"),
+    avatar: img("horacio-santini-avatar.webp"),
     instagram: "https://instagram.com/horaciosantini_corretor",
   },
 ];
 
-/** The only broker; used by nav links and the Home/Sobre/Contato broker section. */
 export const broker = agents[0];
 
 export const getAgent = (slug: string) => agents.find((a) => a.slug === slug);

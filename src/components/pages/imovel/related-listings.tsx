@@ -5,7 +5,6 @@ import { ListingCard } from "@/components/cards";
 import { EASE_HERO, Reveal } from "@/components/motion";
 import type { Listing } from "@/lib/data/listings";
 
-// Lines scale/fade in on load (Framer appear, delay 0.3s); label, title and cards fade in when scrolled into view.
 const lineAppear = {
   initial: { opacity: 0, scale: 0.9 },
   animate: { opacity: 1, scale: 1 },

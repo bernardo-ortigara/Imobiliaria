@@ -57,7 +57,7 @@ export function Services() {
   );
 }
 
-export function ImageBand() {
+export function ImageBand({ image = services.band }: { image?: string }) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const scale = useTransform(scrollYProgress, [0, 0.4], [1.2, 1]);
@@ -65,7 +65,7 @@ export function ImageBand() {
   return (
     <section ref={ref} className="relative h-[615px] overflow-hidden bg-ink">
       <motion.div className="absolute inset-0 will-change-transform" style={{ scale }}>
-        <Image src={services.band} alt="" fill sizes="100vw" className="object-cover" />
+        <Image src={image} alt="" fill sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-[linear-gradient(rgb(255,255,255)_0%,rgba(255,255,255,0.74)_15.56%,rgba(255,255,255,0)_38.6%)]" />
       </motion.div>
     </section>

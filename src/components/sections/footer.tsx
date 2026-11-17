@@ -105,7 +105,6 @@ export function Footer() {
           }}
           className="w-full whitespace-nowrap text-center"
         >
-          {/* gradient on the inline box (taller than the line box), as in the original */}
           <span className="bg-[linear-gradient(181deg,rgb(255,255,255)_30%,rgba(17,17,18,0.91)_74%)] bg-clip-text text-transparent">
             {WORDMARK}
           </span>

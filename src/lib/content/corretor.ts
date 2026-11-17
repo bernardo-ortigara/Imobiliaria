@@ -1,4 +1,3 @@
-// pt-BR copy for /corretores/[slug] (original: /agents/<slug>).
 import type { AgentSlug } from "@/lib/data/agents";
 
 export const corretor = {
@@ -6,16 +5,13 @@ export const corretor = {
   contactCta: "Fale conosco",
   aboutTitle: "Sobre",
   experienceTitle: "Experiência",
-  /** "<name>'s listings" */
   listingsTitle: (name: string) => `Imóveis de ${name}`,
 };
 
 export type AgentProfile = {
-  /** Short line in the contact card. */
   bio: string;
   phone: string;
   email: string;
-  /** Paragraphs. */
   about: string[];
   experience: string[];
 };

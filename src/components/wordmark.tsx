@@ -1,6 +1,3 @@
-// HSANTINI wordmark: Inter (the font of the original "Luxterra" wordmark), tight negative
-// tracking and a medium variable weight, set in uppercase.
-
 export const WORDMARK = "HSANTINI";
 
 export function Wordmark({ className = "" }: { className?: string }) {

@@ -5,14 +5,11 @@ import type { CSSProperties, ReactNode } from "react";
 type RollProps = {
   text: string;
   className?: string;
-  /** "up" for buttons, "down" for nav/footer links */
   direction?: "up" | "down";
   gap?: number;
-  /** optional different style for the copy that rolls in */
   secondClassName?: string;
 };
 
-/** Two stacked copies of a label; hovering the closest `.group` rolls one out and the other in. */
 export function TextRoll({ text, className = "", direction = "up", gap = 5, secondClassName }: RollProps) {
   return (
     <span className={`roll roll-${direction}`} style={{ "--roll-gap": `${gap}px` } as CSSProperties}>
@@ -39,7 +36,6 @@ const toneLine: Record<Tone, string> = {
   onDark: "bg-white/10",
 };
 
-/** Purple dot + small label, optionally flanked by hairlines (the Framer "Dot small" component). */
 export function SectionLabel({
   children,
   tone = "light",
@@ -67,7 +63,6 @@ export function SectionLabel({
   );
 }
 
-/** The two vertical hairlines that split most sections into thirds. */
 export function GridLines({ left = "bg-line", right = "bg-line" }: { left?: string; right?: string }) {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-y-0 inset-x-wrap hidden lg:block">
@@ -77,7 +72,6 @@ export function GridLines({ left = "bg-line", right = "bg-line" }: { left?: stri
   );
 }
 
-/** White/transparent rectangular button with the rolling label. */
 export function RollButton({
   children,
   href = "#",
@@ -100,7 +94,6 @@ export function RollButton({
 }
 
 const arrowTones = {
-  // Framer "Primary": light grey button, dark filler that grows on hover (404 "Voltar ao início")
   primary: {
     root: "bg-mist",
     filler: "bg-ink",
@@ -108,7 +101,6 @@ const arrowTones = {
     text: "text-ink",
     textHover: "text-white",
   },
-  // Framer "Alt": dark button, white filler that grows on hover ("Todos os corretores")
   alt: {
     root: "bg-ink shadow-[inset_0_0_4px_rgba(0,0,0,0.05)]",
     filler: "bg-white",
@@ -118,7 +110,6 @@ const arrowTones = {
   },
 } as const;
 
-/** Button with an arrow tile that expands behind the label on hover (same motion as the Home CTA). */
 export function ArrowButton({ href, children, tone }: { href: string; children: string; tone: keyof typeof arrowTones }) {
   const t = arrowTones[tone];
   return (

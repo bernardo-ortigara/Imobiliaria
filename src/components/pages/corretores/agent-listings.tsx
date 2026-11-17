@@ -2,7 +2,6 @@ import { ListingCard } from "@/components/cards";
 import { Reveal } from "@/components/motion";
 import type { Listing } from "@/lib/data/listings";
 
-/** "<name>'s listings": every listing of the agent (no pagination on the original), fading in on scroll. */
 export function AgentListings({ title, items }: { title: string; items: Listing[] }) {
   if (items.length === 0) return null;
   return (

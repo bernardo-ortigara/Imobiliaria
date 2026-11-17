@@ -1,12 +1,12 @@
 import { img } from "@/lib/data/img";
 
-// pt-BR copy for /contato (original: luxterra.framer.website/contact)
 export const contato = {
   metaTitle: "Contato",
   metaDescription: "Fale com a HSantini Imóveis em Caxias do Sul para comprar, vender, alugar ou avaliar seu imóvel.",
 
   label: "Contato",
   title: "Fale com nossa equipe",
+  band: img("lqwCPSh3RoZtdRP6tJd1GRldOo.webp"),
 
   intro: {
     title: "Entre em contato:",
@@ -30,7 +30,6 @@ export const contato = {
     message: { label: "Mensagem", placeholder: "Sua mensagem" },
     submit: "Enviar",
     success: "Obrigado!",
-    /** Text pre-filled in WhatsApp when the form is sent. */
     whatsappMessage: (d: { enquiry: string; name: string; phone: string; email: string; message: string }) =>
       [
         `Olá, Horácio! Vim pelo site da HSantini Imóveis.`,

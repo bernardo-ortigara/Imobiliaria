@@ -6,14 +6,12 @@ import { EASE_HERO, Reveal } from "@/components/motion";
 import { GridLines } from "@/components/ui";
 import type { Listing } from "@/lib/data/listings";
 
-// On-load "appear" animations measured on the original /cities/<slug> (Framer appear JSON).
 const appear = (delay: number, y: number, scale: number) => ({
   initial: { opacity: 0, y, scale },
   animate: { opacity: 1, y: 0, scale: 1 },
   transition: { duration: 1, ease: EASE_HERO, delay } satisfies Transition,
 });
 
-// Grid lines fade/rise in late (delay 3.4s, soft spring).
 const GRID_SPRING: Transition = { type: "spring", stiffness: 70, damping: 27, mass: 0.3, delay: 3.4 };
 
 type Props = {

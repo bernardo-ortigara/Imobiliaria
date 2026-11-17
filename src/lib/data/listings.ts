@@ -11,9 +11,7 @@ export type Listing = {
   agent: AgentSlug;
   title: string;
   address: string;
-  /** Left out when the price isn't public: the UI shows `priceOnRequest`. */
   price?: string;
-  // Specs are optional: only what the broker actually published is shown.
   area?: string;
   beds?: string;
   baths?: string;
@@ -29,8 +27,6 @@ export const statusLabel: Record<ListingStatus, string> = {
 
 export const priceOnRequest = "Sob consulta";
 
-// Listings from the old site (hsantiniimoveis.com.br/imoveis-disponiveis), in its order.
-// Only facts published there (card text + the cobertura's flyer) are used.
 export const listings: Listing[] = [
   {
     slug: "cobertura-duplex-madureira",

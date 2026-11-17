@@ -7,7 +7,6 @@ import { GridLines } from "@/components/ui";
 import { contato } from "@/lib/content/contato";
 import { ContactForm } from "./contact-form";
 
-// Framer "appear" animations measured on /contact: 1s tween, ease [0.68,0,0,0.99]
 const appear = (delay: number, y: number, scale: number) => ({
   initial: { opacity: 0, y, scale },
   animate: { opacity: 1, y: 0, scale: 1 },

@@ -11,8 +11,6 @@ import { ogImage, openGraphBase } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
-// All slugs are known (generateStaticParams), so blocking on params is fine; this
-// clears the partial-prefetching "URL data outside of Suspense" insight.
 export const instant = false;
 
 export function generateStaticParams() {
@@ -40,7 +38,6 @@ export default async function ImovelPage({ params }: Props) {
   const agent = listing && getAgent(listing.agent);
   if (!listing || !detail || !agent) notFound();
 
-  // Original rule: the first 3 listings in CMS order, skipping the current one.
   const related = listings.filter((l) => l.slug !== slug).slice(0, 3);
 
   return (
