@@ -29,7 +29,7 @@ export function Agents() {
                 alt={broker.name}
                 fill
                 sizes="(min-width: 1024px) 900px, 100vw"
-                className="zoom-img object-cover object-[80%_50%] hover:scale-[1.02]"
+                className="zoom-img object-cover object-[35%_50%] hover:scale-[1.02]"
               />
             </Link>
           </Reveal>

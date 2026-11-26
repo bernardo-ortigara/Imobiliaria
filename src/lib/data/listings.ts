@@ -18,6 +18,7 @@ export type Listing = {
   parking?: string;
   type: string;
   image: string;
+  featured?: boolean;
 };
 
 export const statusLabel: Record<ListingStatus, string> = {
@@ -27,7 +28,25 @@ export const statusLabel: Record<ListingStatus, string> = {
 
 export const priceOnRequest = "Sob consulta";
 
+export const featuredLabel = "Destaque";
+
 export const listings: Listing[] = [
+  {
+    slug: "voc-house-antonella",
+    status: "sale",
+    city: "caxias-do-sul",
+    agent: "horacio-santini",
+    title: "VOC House",
+    address: "Antonella Condomínio Club, Caxias do Sul - RS",
+    price: "R$ 3.887.000",
+    area: "415 m²",
+    beds: "4 Suítes",
+    baths: "5 Banheiros",
+    parking: "5 Vagas",
+    type: "Casa",
+    image: img("voc-house-fachada.webp"),
+    featured: true,
+  },
   {
     slug: "cobertura-duplex-madureira",
     status: "sale",
@@ -68,6 +87,8 @@ export const listings: Listing[] = [
     image: img("apartamento-boulevard-egeo.webp"),
   },
 ];
+
+export const featuredListing = listings.find((l) => l.featured);
 
 export const saleListings = listings.filter((l) => l.status === "sale");
 export const rentListings = listings.filter((l) => l.status === "rent");

@@ -2,11 +2,12 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import { ListingCard } from "@/components/cards";
+import { FeaturedListingCard, ListingCard } from "@/components/cards";
 import { EASE_REVEAL, Reveal } from "@/components/motion";
 import { GridLines, SectionLabel } from "@/components/ui";
 import { listings } from "@/lib/content";
-import { rentListings, saleListings, statusLabel } from "@/lib/data/listings";
+import { getImovelDetail } from "@/lib/content/imovel";
+import { featuredListing, rentListings, saleListings, statusLabel } from "@/lib/data/listings";
 
 const PAGE = 6;
 
@@ -15,7 +16,9 @@ const TABS = (["sale", "rent"] as const).filter((key) => (key === "sale" ? saleL
 export function Listings() {
   const [tab, setTab] = useState<"sale" | "rent">(TABS[0] ?? "sale");
   const [expanded, setExpanded] = useState(false);
-  const items = tab === "sale" ? saleListings : rentListings;
+  const all = tab === "sale" ? saleListings : rentListings;
+  const featured = featuredListing && featuredListing.status === tab ? featuredListing : undefined;
+  const items = featured ? all.filter((l) => l !== featured) : all;
   const visible = expanded ? items : items.slice(0, PAGE);
 
   return (
@@ -54,6 +57,12 @@ export function Listings() {
                   </button>
                 );
               })}
+            </Reveal>
+          )}
+
+          {featured && (
+            <Reveal className="w-full">
+              <FeaturedListingCard item={featured} text={getImovelDetail(featured.slug)?.description} cta={listings.featuredCta} />
             </Reveal>
           )}
 

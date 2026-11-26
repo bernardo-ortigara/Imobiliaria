@@ -71,6 +71,7 @@ export const listings = {
   label: "Imóveis",
   title: "Nossos imóveis recentes",
   loadMore: "Carregar mais",
+  featuredCta: "Conhecer o imóvel",
 };
 
 export const services = {
