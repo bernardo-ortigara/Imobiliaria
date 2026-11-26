@@ -12,6 +12,7 @@ export const imovel = {
     features: "Características e comodidades",
   },
   gallery: "Galeria",
+  lightbox: { open: "Ampliar imagem", close: "Fechar", prev: "Imagem anterior", next: "Próxima imagem" },
   map: "Mapa de localização",
   rating: "5 estrelas",
   form: {

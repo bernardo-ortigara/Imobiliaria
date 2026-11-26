@@ -12,6 +12,7 @@ import { routes } from "@/lib/routes";
 import { openWhatsApp, siteUrl } from "@/lib/site";
 import { imovel, type ImovelDetail } from "@/lib/content/imovel";
 import { CaretDownIcon, LocationPinIcon, StarIcon } from "./icons";
+import { Lightbox } from "./lightbox";
 
 const appear = (delay: number) => ({
   initial: { opacity: 0, scale: 0.9, y: 120 },
@@ -38,6 +39,7 @@ export function ImovelContent({ listing, detail, agent }: Props) {
     [imovel.details.type, listing.type, null],
   ];
   const photos = [listing.image, ...detail.photos];
+  const [zoomed, setZoomed] = useState<number | null>(null);
 
   return (
     <section className="bg-white px-8 pb-[120px] pt-[90px]">
@@ -95,12 +97,25 @@ export function ImovelContent({ listing, detail, agent }: Props) {
             <div id="images" className="flex flex-col gap-7 pb-[50px] pt-5 shadow-[inset_0_-1px_0_var(--color-line-soft)]">
               <h2 className={T28}>{imovel.gallery}</h2>
               <div className="grid grid-cols-2 gap-4">
-                {photos.map((src) => (
-                  <div key={src} className="relative aspect-[332/214]">
-                    <Image src={src} alt="" fill sizes="(min-width: 1024px) 333px, 50vw" className="object-cover" />
-                  </div>
+                {photos.map((src, i) => (
+                  <button
+                    key={src}
+                    type="button"
+                    onClick={() => setZoomed(i)}
+                    aria-label={`${imovel.lightbox.open} ${i + 1}`}
+                    className="group/photo relative aspect-[332/214] cursor-zoom-in overflow-hidden"
+                  >
+                    <Image
+                      src={src}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 333px, 50vw"
+                      className="zoom-img object-cover group-hover/photo:scale-[1.02]"
+                    />
+                  </button>
                 ))}
               </div>
+              <Lightbox images={photos} index={zoomed} alt={listing.title} labels={imovel.lightbox} onChange={setZoomed} />
             </div>
           )}
 
